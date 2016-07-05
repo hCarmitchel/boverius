@@ -1,0 +1,289 @@
+#fullpage
+  .section.text-center
+    .slide{'data-anchor' => 'slide0'}
+      .row
+        .shadow The Boveris
+    .slide{'data-anchor' => 'slide1'}
+      .row
+        .large-12.small-centered.columns
+          %span.dashed-shadow{'data-text' => 'They met'} They met
+          %span.line-5
+            %span.line-6 July 2013
+    .slide{'data-anchor' => 'slide2'}
+      .row
+        .large-12.small-centered.columns
+          %span.dashed-shadow{'data-text' => 'They got together'} They got together
+          %span.line-5
+            %span.line-6 May 2014
+    .slide{'data-anchor' => 'slide3'}
+      .row
+        .large-12.small-centered.columns
+          %span.dashed-shadow{'data-text' => 'They got together'} They got together
+          %span.line-5
+            %span.line-6 March 15, 2017
+    .slide{'data-anchor' => 'slide4'}
+      .row
+        .large-12.small-centered.columns
+          %span The Boveri's
+          %span.slide-wedding wedding
+          %span.dashed-shadow{'data-text' => "They're getting hitched"} They're getting hitched
+          %span.line-5
+            %a{href: 'https://github.com/codrops/Arctext'} Matthew
+            %a{href: 'http://codepen.io/zambo/pen/jKEDp/'} Heather
+            %span.line-6 2017
+  - if user_signed_in?
+    .section
+      .row
+        .large-10.small-centered.columns.text-center
+          %span.dashed-shadow{'data-text' => 'The Wedding'} The Wedding
+      - unless current_user.rsvp?
+        .row
+          .large-10.small-centered.columns
+            .alert.callout{'data-closable' => ''}
+              %h2
+                You have not yet RSVP'd! Please RSVP
+                %a{href: edit_user_registration_path} here
+              %button.close-button{'aria-label' => 'Dismiss alert', 'data-close' => '', type: 'button'}
+                %span{'aria-hidden' => 'true'} &times;
+      .row
+        .large-10.small-centered.columns
+          %section#cd-timeline
+            .cd-timeline-block
+              .cd-timeline-img
+                %img{alt: 'Picture', src: 'assets/restaurant.svg'}
+              .cd-timeline-content
+                %p.timeline-name Venue Setup
+                %span.cd-date 9:00 AM - 10:30 AM
+            .cd-timeline-block
+              .cd-timeline-img
+                %img{alt: 'Picture', src: 'assets/people.svg'}
+              .cd-timeline-content
+                %p.timeline-name Rehearsal
+                %span.cd-date 10:30 AM - 11:30 AM
+            .cd-timeline-block
+              .cd-timeline-img
+                %img{alt: 'Picture', src: 'assets/food.svg'}
+              .cd-timeline-content
+                %p.timeline-name Lunch break
+                %span.cd-date 11:30 - 1:00 PM
+            .cd-timeline-block
+              .cd-timeline-img
+                %img{alt: 'Picture', src: 'assets/camera.svg'}
+              .cd-timeline-content
+                %p.timeline-name Bride & Groom get ready
+                %span.cd-date 1:00 - 2:30 PM
+            .cd-timeline-block
+              .cd-timeline-img
+                %img{alt: 'Picture', src: 'assets/rings.svg'}
+              .cd-timeline-content
+                %p.timeline-name Photos at the venue
+                %span.cd-date 2:30 PM - 3:30 PM
+            .cd-timeline-block
+              .cd-timeline-img
+                %img{alt: 'Picture', src: 'assets/rings.svg'}
+              .cd-timeline-content
+                %p.timeline-name Ceremony
+                %span.cd-date 3:30 PM - 4:00 PM
+            .cd-timeline-block
+              .cd-timeline-img
+                %img{alt: 'Picture', src: 'assets/champagne.svg'}
+              .cd-timeline-content
+                %p.timeline-name Cocktail Hour
+                %span.cd-date 4:00 PM - 5:00 PM
+            .cd-timeline-block
+              .cd-timeline-img
+                %img{alt: 'Picture', src: 'assets/cake.svg'}
+              .cd-timeline-content
+                %p.timeline-name Reception
+                %span.cd-date 5:00 PM - 9:00 PM
+            .cd-timeline-block
+              .cd-timeline-img
+                %img{alt: 'Picture', src: 'assets/favorite.svg'}
+              .cd-timeline-content
+                %p.timeline-name Teardown & Goodnights
+                %span.cd-date 9:00 PM
+            %div
+            / <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+    .section
+      .row
+        .large-12.small-centered.columns.text-center
+          %span.dashed-shadow{'data-text' => 'About Us'} About Us
+      .row
+        .small-4.columns
+          .box
+            .box-icon
+              %span= @days_together
+            .info
+              %p.text-center Days together
+              .details More Details
+        .small-4.columns
+          .box
+            .box-icon
+              %span= @days_since_we_met
+            .info
+              %p.text-center Days since we met
+              .details More Details
+        .small-4.columns
+          .box
+            .box-icon
+              %span 4
+            .info
+              %p.text-center Vacations together
+              .details More Details
+      .row
+        .small-4.columns
+          .box
+            .box-icon
+              %span 2
+            .info
+              %p.text-center Cerner jobs
+              .details
+                %ul
+                  %li
+                    Bride - Software engineer
+                  %li
+                    Groom - Systems engineer
+                  %li
+                    = link_to image_tag('cerner.gif'), 'http://www.cerner.com/'
+        .small-4.columns
+          .box
+            .box-icon
+              %span 1
+            .info
+              %p.text-center Cool abode
+              .details More Details
+        .small-4.columns
+          .box
+            .box-icon
+              %span 1
+            .info
+              %p.text-center Sassy cat
+              .details More Details
+      .row
+        .small-4.columns
+          .box
+            .box-icon
+              %span 2
+            .info
+              %p.text-center Universities
+              .details
+                %ul
+                  %li
+                    Bride
+                    = link_to image_tag('ksu.jpeg'), 'http://www.k-state.edu/'
+                  %li
+                    Groom
+                    = link_to image_tag('iu.png'), 'https://www.indiana.edu/'
+        .small-4.columns
+          .box
+            .box-icon
+              %span 5
+            .info
+              %p.text-center Parents
+              .details
+                %ul
+                  %li Bride
+                  %li
+                    %ul
+                      %li Debra Carmitchel
+                  %li Groom
+                  %li
+                    %ul
+                      %li Sharon & Kevin Bohn
+                      %li Franci & Mark Boveri
+
+        .small-4.columns
+          .box
+            .box-icon
+              %span 3
+            .info
+              %p.text-center Siblings
+              .details
+                %ul
+                  %li Bride
+                  %li
+                    %ul
+                      %li Lucas Carmitchel
+                  %li Groom
+                  %li
+                    %ul
+                      %li Madeline Boveri
+                      %li Camden Bohn
+
+    .section
+      .row
+        .large-12.large-centered.columns
+          .text-center
+            %span.dashed-shadow{'data-text' => 'FAQ'} FAQ
+      .row
+        .large-10.large-centered.columns
+          %ul.accordion{'data-accordion' => ''}
+            %li.accordion-item.is-active{'data-accordion-item' => ''}
+              %a.accordion-title{href: '#'}
+                Registries
+                %span.fa.accordion-icon
+              .accordion-content{'data-tab-content' => ''}
+                %ul
+                  %li
+                    %a{href: 'https://www.amazon.com/wedding/registry/U975U00FSH3N'} Amazon
+                  %li
+                    %a{href: 'https://bedbathbeyond.com'} Bed Bath, & Beyond
+                  %li
+                    %a{href: 'http://www.target.com/gift-registry/registry/tqVAnOA2s9nsFTrun3MfQQ?lnk=copiedLink'} Target
+            %li.accordion-item{'data-accordion-item' => ''}
+              %a.accordion-title{href: '#'}
+                What to Bring
+                %span.fa.accordion-icon
+              .accordion-content{'data-tab-content' => ''}
+                Lots of cool stuff
+            %li.accordion-item{'data-accordion-item' => ''}
+              %a.accordion-title{href: '#'}
+                Hotel Info
+                %span.fa.accordion-icon
+              .accordion-content{'data-tab-content' => ''}
+                Live there now
+            %li.accordion-item{'data-accordion-item' => ''}
+              %a.accordion-title{href: '#'}
+                Photos
+                %span.fa.accordion-icon
+              .accordion-content{'data-tab-content' => ''}
+                %p
+                  For our wedding, we are using an app to collect guest photos in lieu of disposable cameras! Please download this and sign up!
+                  Please download this app:
+                %ul
+                  %li
+                    %a{href: 'https://play.google.com/store/apps/details?id=com.dejami.WedPics&hl=en'} Wedding Party (Android)
+                  %li
+                    %a{href: 'https://itunes.apple.com/us/app/wedding-party/id494214305?mt=8'} Wedding Party (iOS)
+    .section
+      .row.top-row
+        .large-12.large-centered.columns
+          .text-center
+            %span.dashed-shadow{'data-text' => 'Contact Us'} Contact Us
+      .row
+        .large-10.large-centered.columns
+          = simple_form_for @contact, html: { class: 'form-horizontal' } do |f|
+            = f.input :name, required: true
+            = f.input :email, required: true
+            = f.input :message, as: :text, required: true, input_html: { rows: 5 }
+            = f.button :submit, 'Send message', class: 'btn btn-primary'
+
+%link{href: 'http://fonts.googleapis.com/css?family=Cookie', rel: 'stylesheet', type: 'text/css'}
+%link{href: 'http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700', rel: 'stylesheet', type: 'text/css'}
+%link{href: 'http://fonts.googleapis.com/css?family=Sancreek', rel: 'stylesheet', type: 'text/css'}
+%link{href: '//fonts.googleapis.com/css?family=Roboto:200,400,600', rel: 'stylesheet', type: 'text/css'}
+%link{href: 'http://fonts.googleapis.com/css?family=Mr+Dafoe', rel: 'stylesheet', type: 'text/css'}
+
+:javascript
+  $(document).ready(function() {
+    $('#fullpage').fullpage({
+      sectionsColor: ['#422E25', '#B9E8CE', '#D3E7DC', '#ddd', '#eee'],
+      loopBottom: true,
+      menu: '#example-menu',
+      recordHistory: false,
+      navigationTooltips: ['Album', 'The Wedding', 'About Us', 'FAQ', 'Contact Us'],
+      navigation: true,
+      showActiveTooltip: true,
+      responsiveWidth: 1100
+    });
+  });

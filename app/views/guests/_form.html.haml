@@ -1,0 +1,42 @@
+= form_for @guest do |f|
+  - if @guest.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@guest.errors.count, "error")} prohibited this guest from being saved:"
+      %ul
+        - @guest.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    = f.label :first_name
+    = f.text_field :first_name, autofocus: true
+  .field
+    = f.label :last_name
+    = f.text_field :last_name
+  .field
+    = f.label :dietary_restriction
+    = f.select :dietary_restriction, ['Vegetarian', 'Vegan', 'Allergy', 'Other'], { include_hidden: false, include_blank: 'None' }, id: 'restriction'
+  .field{id: 'special_instructions'}
+    = f.label :special_instructions
+    %i (please explain allergies or other restrictions)
+    = f.text_area :special_instructions, rows: 3
+  .inline-fields
+    = f.fields_for :rsvps do |builder|
+      .field.switch.large
+        = builder.label builder.object.rsvp_type
+        = builder.hidden_field :rsvp_type, value: builder.object.rsvp_type
+        = builder.check_box :going, class: 'hide'
+        = builder.label :going, class: 'switch-paddle' do
+          %span.switch-active{'aria-hidden' => 'true'} Yes
+          %span.switch-inactive{'aria-hidden' => 'true'} No
+  .field.switch.large
+    = f.label :below_drinking_age
+    = f.check_box :below_drinking_age, class: 'hide'
+    %label.switch-paddle{for: 'guest_below_drinking_age'}
+      %span.switch-active{'aria-hidden' => 'true'} Yes
+      %span.switch-inactive{'aria-hidden' => 'true'} No
+  - if current_user.admin
+    .field
+      = f.label :role
+      = f.select :role, Guest::ROLES, { include_hidden: false, include_blank: 'None' }
+
+  .actions
+    = f.submit 'Save', class: 'button success float-left'

@@ -1,0 +1,103 @@
+%h2
+  Edit Profile
+= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'custom' }) do |f|
+  = devise_error_messages!
+  .field
+    = f.label :first_name
+    = f.text_field :first_name, autofocus: true
+  .field
+    = f.label :last_name
+    = f.text_field :last_name
+  .field
+    = f.label :dietary_restriction
+    = f.select :dietary_restriction, ['Vegetarian', 'Vegan', 'Allergy', 'Other'], { include_hidden: false, include_blank: 'None' }
+  .field{id: 'special_instructions'}
+    = f.label :special_instructions do
+      %span.has-tip{'aria-haspopup' => 'true', 'data-tooltip' => '', title: 'Please explain allergies or other restrictions'}
+        Special Instructions
+    = f.text_area :special_instructions
+  .field
+    = f.label :hotel_rooms do
+      %span.has-tip{'aria-haspopup' => 'true', 'data-tooltip' => '', title: 'Indicate the number of hotel rooms for your party'}
+        Hotel Rooms
+    = f.number_field :hotel_rooms, min: 0, max: 5
+  - if current_user.admin
+    .field
+      = f.label :role
+      = f.select :role, Guest::ROLES, { include_hidden: false, include_blank: 'None' }
+  = f.fields_for :rsvps do |builder|
+    .field.switch.large
+      = builder.label builder.object.rsvp_type
+      = builder.hidden_field :rsvp_type, value: builder.object.rsvp_type
+      = builder.check_box :going, class: 'hide'
+      = builder.label :going, class: 'switch-paddle' do
+        %span.switch-active{'aria-hidden' => 'true'} Yes
+        %span.switch-inactive{'aria-hidden' => 'true'} No
+  .field
+    = f.label :email
+    = f.email_field :email
+  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+    %div
+      Currently waiting confirmation for: #{resource.unconfirmed_email}
+  .field
+    = f.label :password do
+      %span.has-tip{'aria-haspopup' => 'true', 'data-tooltip' => '', title: "Leave blank if you don't want to change it"}
+        Password
+    = f.password_field :password, autocomplete: 'off'
+  .field
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation, autocomplete: 'off'
+  .field.switch.large
+    = f.label :reminders do
+      %span.has-tip{'aria-haspopup' => 'true', 'data-tooltip' => '', title: "If left checked, we will send an email reminder if no rsvps have been sent a month from event"}
+        Reminders
+    = f.check_box :reminders, class: 'hide'
+    %label.switch-paddle{for: 'user_reminders'}
+      %span.switch-active{'aria-hidden' => 'true'} Yes
+      %span.switch-inactive{'aria-hidden' => 'true'} No
+  .field
+    = f.label :current_password do
+      %span.has-tip{'aria-haspopup' => 'true', 'data-tooltip' => '', title: 'We need your current password to confirm your changes'}
+        Current Password
+    = f.password_field :current_password, autocomplete: 'off'
+  .actions
+    = f.submit 'Update', class: 'button'
+
+%h3 Guests
+
+%p Add all guests that are in your party so we can account for plates
+
+- if resource.guests.any?
+  %table
+    %thead
+      %tr
+        %th First name
+        %th Last name
+        %th Registrations
+        %th
+
+    %tbody
+      - resource.guests.each do |guest|
+        %tr
+          %td= guest.first_name
+          %td= guest.last_name
+          %td
+            %ul
+              - guest.registrations.each do |rsvp|
+                %li= rsvp
+          %td.actions
+            %ul
+              %li
+                = link_to edit_guest_path(guest), class: 'button warning' do
+                  %i.fa.fa-pencil-square-o
+              %li
+                = link_to guest, class: 'button alert', method: :delete, data: { confirm: 'Are you sure?' } do
+                  %i.fa.fa-trash
+
+= link_to 'New Guest', new_guest_path, class: 'button success'
+
+
+%h3 Cancel my account
+%p
+  Unhappy? #{button_to 'Cancel my account', registration_path(resource_name), data: { confirm: 'Are you sure?' }, class: 'button alert', method: :delete}
+= link_to 'Back', :back, class: 'button float-right'
