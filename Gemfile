@@ -9,7 +9,7 @@ gem 'haml-rails', '~> 0.9'
 gem 'jquery-rails'
 gem 'rails', '5.0.1'
 gem 'sass-rails', '~> 5.0'
-gem 'sqlite3'
+gem 'pg'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 
