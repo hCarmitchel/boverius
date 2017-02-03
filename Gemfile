@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.2.2'
 
 gem 'compass-rails'
 gem 'devise'
@@ -21,4 +22,3 @@ end
 group :development do
   gem 'spring'
 end
-
