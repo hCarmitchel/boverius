@@ -4,12 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def home
-    @contact = Contact.new
     @days_together = (Date.today - Date.parse('02/07/2014')).numerator
     @days_since_we_met = (Date.today - Date.parse('03/07/2013')).numerator
-  end
-
-  def information
-    @registries = Registry.all
   end
 end

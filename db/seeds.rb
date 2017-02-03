@@ -3,11 +3,4 @@
 # user.toggle!(:admin)
 # puts 'New user created: ' << user.name
 
-# puts 'Adding registries'
-registries = {
-  'Amazon' => 'https://www.amazon.com/gp/registry/wedding/U975U00FSH3N'
-}
-
-registries.each_pair do |name, url|
-  Registry.find_or_create_by(name: name, url: url)
-end
+InviteCode.find_or_create_by(value: 'eat', guests: 1)

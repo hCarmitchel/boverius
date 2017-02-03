@@ -1,228 +1,220 @@
 #fullpage
-  .section.text-center
-    .slide{'data-anchor' => 'slide0'}
-      .row
-        .shadow The Boveris
-    .slide{'data-anchor' => 'slide1'}
-      .row
-        .large-12.small-centered.columns
-          %span.dashed-shadow{'data-text' => 'They met'} They met
-          %span.line-5
-            %span.line-6 July 2013
-    .slide{'data-anchor' => 'slide2'}
-      .row
-        .large-12.small-centered.columns
-          %span.dashed-shadow{'data-text' => 'They got together'} They got together
-          %span.line-5
-            %span.line-6 May 2014
-    .slide{'data-anchor' => 'slide3'}
-      .row
-        .large-12.small-centered.columns
-          %span.dashed-shadow{'data-text' => 'They got together'} They got together
-          %span.line-5
-            %span.line-6 March 15, 2017
-    .slide{'data-anchor' => 'slide4'}
-      .row
-        .large-12.small-centered.columns
-          %span The Boveri's
-          %span.slide-wedding wedding
-          %span.dashed-shadow{'data-text' => "They're getting hitched"} They're getting hitched
-          %span.line-5
-            %a{href: 'https://github.com/codrops/Arctext'} Matthew
-            %a{href: 'http://codepen.io/zambo/pen/jKEDp/'} Heather
-            %span.line-6 2017
+  .section.front-page.text-center
+    .row
+      .large-12.small-centered.columns
+        %span.title The Boveri wedding
+        %span.dashed-shadow{'data-text' => 'January 8th, 2018'} January 8th, 2018
+        %span.names
+          Matthew
+          %i.fa.fa-heart
+          Heather
   - if user_signed_in?
     .section
       .row
         .large-10.small-centered.columns.text-center
-          %span.dashed-shadow{'data-text' => 'The Wedding'} The Wedding
-      - unless current_user.rsvp?
+          %span.dashed-shadow{'data-text' => 'The Wedding Week'} The Wedding Week
+      .row.text-center
+        %a{class: 'button', href: 'https://www.triphobo.com/tripplans/coco/itinerary-from-kansas-city-5894efb24e8231d424000c91'} View Intinerary
+      .row
+        .small-6.columns
+          .box
+            .box-icon
+              %span Jan 6
+            .info
+              %p.text-center <b>Everyone arrives</b>
+        .small-6.columns
+          .box
+            .box-icon
+              %span Jan 7
+            .info
+              %p.text-center <b>Pool party & boat ride</b>
+      .row
+        .small-2.columns
+          .box
+            .box-icon
+              %span Jan 8
+            .info
+              %p.text-center <b>Day of the wedding</b>
+        .small-2.columns
+          .box
+            .box-icon
+              %span Jan 9
+            .info
+              %p.text-center <b>A day of adventure</b>
+        .small-2.columns
+          .box
+            .box-icon
+              %span Jan 10
+            .info
+              %p.text-center <b>Relaxing and swimming</b>
+        .small-2.columns
+          .box
+            .box-icon
+              %span Jan 11
+            .info
+              %p.text-center <b>Day of strategy</b>
+        .small-2.columns
+          .box
+            .box-icon
+              %span Jan 12
+            .info
+              %p.text-center <b>More stuff yes probs</b>
+        .small-2.columns
+          .box
+            .box-icon
+              %span Jan 13
+            .info
+              %p.text-center <b>Cocktail Hour</b>
+    .section
+      .row
+        .large-10.small-centered.columns.text-center
+          %span.dashed-shadow{'data-text' => 'The Wedding Day'} The Wedding Day
+      - unless current_user.rsvp
         .row
           .large-10.small-centered.columns
-            .alert.callout{'data-closable' => ''}
-              %h2
+            .alert.callout
+              %h2.text-center
                 You have not yet RSVP'd! Please RSVP
                 %a{href: edit_user_registration_path} here
-              %button.close-button{'aria-label' => 'Dismiss alert', 'data-close' => '', type: 'button'}
-                %span{'aria-hidden' => 'true'} &times;
-      .row
-        .large-10.small-centered.columns
-          %section#cd-timeline
-            .cd-timeline-block
-              .cd-timeline-img
-                %img{alt: 'Picture', src: 'assets/restaurant.svg'}
-              .cd-timeline-content
-                %p.timeline-name Venue Setup
-                %span.cd-date 9:00 AM - 10:30 AM
-            .cd-timeline-block
-              .cd-timeline-img
-                %img{alt: 'Picture', src: 'assets/people.svg'}
-              .cd-timeline-content
-                %p.timeline-name Rehearsal
-                %span.cd-date 10:30 AM - 11:30 AM
-            .cd-timeline-block
-              .cd-timeline-img
-                %img{alt: 'Picture', src: 'assets/food.svg'}
-              .cd-timeline-content
-                %p.timeline-name Lunch break
-                %span.cd-date 11:30 - 1:00 PM
-            .cd-timeline-block
-              .cd-timeline-img
-                %img{alt: 'Picture', src: 'assets/camera.svg'}
-              .cd-timeline-content
-                %p.timeline-name Bride & Groom get ready
-                %span.cd-date 1:00 - 2:30 PM
-            .cd-timeline-block
-              .cd-timeline-img
-                %img{alt: 'Picture', src: 'assets/rings.svg'}
-              .cd-timeline-content
-                %p.timeline-name Photos at the venue
-                %span.cd-date 2:30 PM - 3:30 PM
-            .cd-timeline-block
-              .cd-timeline-img
-                %img{alt: 'Picture', src: 'assets/rings.svg'}
-              .cd-timeline-content
-                %p.timeline-name Ceremony
-                %span.cd-date 3:30 PM - 4:00 PM
-            .cd-timeline-block
-              .cd-timeline-img
-                %img{alt: 'Picture', src: 'assets/champagne.svg'}
-              .cd-timeline-content
-                %p.timeline-name Cocktail Hour
-                %span.cd-date 4:00 PM - 5:00 PM
-            .cd-timeline-block
-              .cd-timeline-img
-                %img{alt: 'Picture', src: 'assets/cake.svg'}
-              .cd-timeline-content
-                %p.timeline-name Reception
-                %span.cd-date 5:00 PM - 9:00 PM
-            .cd-timeline-block
-              .cd-timeline-img
-                %img{alt: 'Picture', src: 'assets/favorite.svg'}
-              .cd-timeline-content
-                %p.timeline-name Teardown & Goodnights
-                %span.cd-date 9:00 PM
-            %div
-            / <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+      - else
+        .row
+          .large-10.small-centered.columns
+            %section#cd-timeline
+              .cd-timeline-block
+                .cd-timeline-img
+                  %img{alt: 'Picture', src: 'assets/restaurant.svg'}
+                .cd-timeline-content
+                  %p.timeline-name Lunch break
+                  %span.cd-date 11:30 - 1:00 PM
+              .cd-timeline-block
+                .cd-timeline-img
+                  %img{alt: 'Picture', src: 'assets/people.svg'}
+                .cd-timeline-content
+                  %p.timeline-name Bride & Groom get ready
+                  %span.cd-date 2:00 - 3:30 PM
+              .cd-timeline-block
+                .cd-timeline-img
+                  %img{alt: 'Picture', src: 'assets/rings.svg'}
+                .cd-timeline-content
+                  %p.timeline-name Ceremony at <a href="http://www.pacifico-costarica.com/beach-club/">Pacifico</a>
+                  %span.cd-date 4:00 PM - 4:30 PM
+              .cd-timeline-block
+                .cd-timeline-img
+                  %img{alt: 'Picture', src: 'assets/camera.svg'}
+                .cd-timeline-content
+                  %p.timeline-name Wedding party takes photos
+                  %span.cd-date 4:30 PM - 5:00 PM
+              .cd-timeline-block
+                .cd-timeline-img
+                  %img{alt: 'Picture', src: 'assets/champagne.svg'}
+                .cd-timeline-content
+                  %p.timeline-name Cocktail Hour
+                  %span.cd-date 4:30 PM - 5:30 PM
+              .cd-timeline-block
+                .cd-timeline-img
+                  %img{alt: 'Picture', src: 'assets/cake.svg'}
+                .cd-timeline-content
+                  %p.timeline-name Reception
+                  %span.cd-date 5:30 PM - 9:00 PM
+              .cd-timeline-block
+                .cd-timeline-img
+                  %img{alt: 'Picture', src: 'assets/fireworks.svg'}
+                .cd-timeline-content
+                  %p.timeline-name After party at the house
+                  %span.cd-date 10:00 PM - ???
+              %div
+              / <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
     .section
       .row
         .large-12.small-centered.columns.text-center
-          %span.dashed-shadow{'data-text' => 'About Us'} About Us
+          %span.dashed-shadow{'data-text' => 'The Wedding Party'} The Wedding Party
       .row
-        .small-4.columns
-          .box
+        .small-6.columns
+          .box{class: [current_user.role_class('Bride')] }
             .box-icon
-              %span= @days_together
+              %span Bride
             .info
-              %p.text-center Days together
-              .details More Details
-        .small-4.columns
-          .box
+              %p.text-center <b>Heather</b>
+              %p.text-center Carmitchel
+        .small-6.columns
+          .box{class: [current_user.role_class('Groom')] }
             .box-icon
-              %span= @days_since_we_met
+              %span Groom
             .info
-              %p.text-center Days since we met
-              .details More Details
-        .small-4.columns
-          .box
-            .box-icon
-              %span 4
-            .info
-              %p.text-center Vacations together
-              .details More Details
+              %p.text-center <b>Matthew</b>
+              %p.text-center Boveri
       .row
-        .small-4.columns
-          .box
+        .small-2.columns
+          .box{class: [current_user.role_class('Man of Honor')] }
             .box-icon
-              %span 2
+              %span Man of Honor
             .info
-              %p.text-center Cerner jobs
-              .details
-                %ul
-                  %li
-                    Bride - Software engineer
-                  %li
-                    Groom - Systems engineer
-                  %li
-                    = link_to image_tag('cerner.gif'), 'http://www.cerner.com/'
-        .small-4.columns
-          .box
+              %p.text-center <b>Adam</b>
+              %p.text-center Wieberg
+        .small-2.columns
+          .box{class: [current_user.role_class('Bridesmaid')] }
             .box-icon
-              %span 1
+              %span Bridesmaid
             .info
-              %p.text-center Cool abode
-              .details More Details
-        .small-4.columns
-          .box
+              %p.text-center <b>Jenn</b>
+              %p.text-center Blank
+        .small-2.columns
+          .box{class: [current_user.role_class('Bridesmaid')] }
             .box-icon
-              %span 1
+              %span Bridesmaid
             .info
-              %p.text-center Sassy cat
-              .details More Details
+              %p.text-center <b>Emily</b>
+              %p.text-center Brubaker
+        .small-2.columns
+          .box{class: [current_user.role_class('Best Man')] }
+            .box-icon
+              %span Best Man
+            .info
+              %p.text-center <b>Philip</b>
+              %p.text-center Brubaker
+        .small-2.columns
+          .box{class: [current_user.role_class('Groomsman')] }
+            .box-icon
+              %span Groomsman
+            .info
+              %p.text-center <b>Josh</b>
+              %p.text-center Noeldner
+        .small-2.columns
+          .box{class: [current_user.role_class('Groomsman')] }
+            .box-icon
+              %span Groomsman
+            .info
+              %p.text-center <b>Alex</b>
+              %p.text-center Baruth
       .row
-        .small-4.columns
-          .box
+        .small-12.columns
+          .box{class: [current_user.role_class('Officiant')] }
             .box-icon
-              %span 2
+              %span Officiant
             .info
-              %p.text-center Universities
-              .details
-                %ul
-                  %li
-                    Bride
-                    = link_to image_tag('ksu.jpeg'), 'http://www.k-state.edu/'
-                  %li
-                    Groom
-                    = link_to image_tag('iu.png'), 'https://www.indiana.edu/'
-        .small-4.columns
-          .box
-            .box-icon
-              %span 5
-            .info
-              %p.text-center Parents
-              .details
-                %ul
-                  %li Bride
-                  %li
-                    %ul
-                      %li Debra Carmitchel
-                  %li Groom
-                  %li
-                    %ul
-                      %li Sharon & Kevin Bohn
-                      %li Franci & Mark Boveri
-
-        .small-4.columns
-          .box
-            .box-icon
-              %span 3
-            .info
-              %p.text-center Siblings
-              .details
-                %ul
-                  %li Bride
-                  %li
-                    %ul
-                      %li Lucas Carmitchel
-                  %li Groom
-                  %li
-                    %ul
-                      %li Madeline Boveri
-                      %li Camden Bohn
+              %p.text-center <b>Kaelyn</b>
+              %p.text-center Sanchez
 
     .section
       .row
         .large-12.large-centered.columns
           .text-center
-            %span.dashed-shadow{'data-text' => 'FAQ'} FAQ
+            %span.dashed-shadow{'data-text' => 'Wedding Details'} Wedding Details
       .row
-        .large-10.large-centered.columns
+        .large-12.large-centered.columns
           %ul.accordion{'data-accordion' => ''}
-            %li.accordion-item.is-active{'data-accordion-item' => ''}
+            %li.accordion-item{'data-accordion-item' => ''}
+              %a.accordion-title{href: '#'}
+                About Costa Rica
+              .accordion-content{'data-tab-content' => ''}
+
+            %li.accordion-item{'data-accordion-item' => ''}
               %a.accordion-title{href: '#'}
                 Registries
-                %span.fa.accordion-icon
               .accordion-content{'data-tab-content' => ''}
+                %p
+                  As this is a destination wedding and there are limitations in what we can take back with us, we would appreciate anyone who would like to give us a wedding present send it to the following address:
+                %p.text-center <b>Matt and Heather Boveri<br/>6946 Oakview Street<br/>Shawnee, KS 66216</b>
                 %ul
                   %li
                     %a{href: 'https://www.amazon.com/wedding/registry/U975U00FSH3N'} Amazon
@@ -232,41 +224,120 @@
                     %a{href: 'http://www.target.com/gift-registry/registry/tqVAnOA2s9nsFTrun3MfQQ?lnk=copiedLink'} Target
             %li.accordion-item{'data-accordion-item' => ''}
               %a.accordion-title{href: '#'}
-                What to Bring
-                %span.fa.accordion-icon
-              .accordion-content{'data-tab-content' => ''}
-                Lots of cool stuff
-            %li.accordion-item{'data-accordion-item' => ''}
-              %a.accordion-title{href: '#'}
-                Hotel Info
-                %span.fa.accordion-icon
-              .accordion-content{'data-tab-content' => ''}
-                Live there now
-            %li.accordion-item{'data-accordion-item' => ''}
-              %a.accordion-title{href: '#'}
                 Photos
-                %span.fa.accordion-icon
               .accordion-content{'data-tab-content' => ''}
                 %p
-                  For our wedding, we are using an app to collect guest photos in lieu of disposable cameras! Please download this and sign up!
+                  For our wedding, we are using an app to collect guest photos in lieu of disposable cameras! Please download this and sign up using the wedding code "veryboveri"!
                   Please download this app:
                 %ul
                   %li
-                    %a{href: 'https://play.google.com/store/apps/details?id=com.dejami.WedPics&hl=en'} Wedding Party (Android)
+                    %a{href: 'https://play.google.com/store/apps/details?id=com.dejami.WedPics&hl=en'} WedPics (Android)
                   %li
-                    %a{href: 'https://itunes.apple.com/us/app/wedding-party/id494214305?mt=8'} Wedding Party (iOS)
+                    %a{href: 'https://itunes.apple.com/us/app/wedpics-wedding-photo-app/id549402355?mt=8'} WedPics (iOS)
+
+    .section
+      .row
+        .large-12.large-centered.columns
+          .text-center
+            %span.dashed-shadow{'data-text' => 'Travel Info'} Travel Info
+      .row
+        .large-12.large-centered.columns
+          .text-center
+            %a{class: 'button'} Download PDF
+      .row
+        .large-12.large-centered.columns
+          %ul.accordion{'data-accordion' => ''}
+            %li.accordion-item{'data-accordion-item' => ''}
+              %a.accordion-title{href: '#'}
+                Hotels
+              .accordion-content{'data-tab-content' => ''}
+                %p
+                  There are a number of good hotel options in Costa Rica, and to avoid limiting everyone's options to one hotel we have a few recommendations. If you are interested in a home or condo rental, the area we are staying in has many options <a href=''>available</a> in the area. If you would prefer a hotel experience, here are the onces we suggest with approximate pricing:
+                %ul
+                  %li
+                    %b <a href='http://www.cocobeachcr.com/index.php?lang=en'>Coco Beach Hotel</a> - $
+                    %p
+                  %li
+                    %b <a href='http://www.bosquedelmar.com/'>Bosque Del Mar</a> - $$
+                    %p
+                  %li
+                    %b <a href='https://papagayo.andaz.hyatt.com/en/hotel/home.html'>Hiatt</a> - $$$
+                    %p
+            %li.accordion-item{'data-accordion-item' => ''}
+              %a.accordion-title{href: '#'}
+                Car Rentals
+              .accordion-content{'data-tab-content' => ''}
+                %p
+                  There are a lot of trusted car rental brands in the area. So far we have the most experience with Budget. If you are traveling alone or in a small group, reach out to us and we can will try to match people up if they are staying in the same place.
+                %ul
+                  %li
+                    %b <a href=''>Budget</a>
+                    %p
+                  %li
+                    %b <a href=''>Hertz</a>
+                    %p
+            %li.accordion-item{'data-accordion-item' => ''}
+              %a.accordion-title{href: '#'}
+                Restaurants
+              .accordion-content{'data-tab-content' => ''}
+                %p
+                  Playa Hermosa and neighboring Coco provide a lot of interesting local options for food, especially seafood. Note that there are not many chain restaurants but their are a few if you are looking for something more like home.
+                %p
+                  Key: <b>[$]</b> - expect $10-15 per person. <b>[$$]</b> - expect $15-25 per person. <b>[$$$]</b> - expect $25+ per person.
+                %ul
+                  %li
+                    <b><a href='https://www.facebook.com/La-Casita-del-Marisco-1419135485019501/'>La Casita Del Marisco's</a> - $</b> - <a href='https://www.tripadvisor.com/Restaurant_Review-g309246-d6637656-Reviews-La_Casita_del_Marisco-Playa_Hermosa_Province_of_Guanacaste.html'>Reviews</a> - Latin, Seafood, Central American, Costa Rican
+                    %p Outdoor restaurant with cheap and generous portions of fish right on the beach. Restaurant itself is seems cheap but the food is great. Use bug spray. Note that the restaurant is a bit off the beaten path and could be harder to find than others.
+                  %li
+                    <b><a href='http://www.zilounge.com/'>Zi Lounge</a> - $</b> - <a href='https://www.tripadvisor.com/Restaurant_Review-g309243-d2042303-Reviews-Zi_Lounge_Restaurant-Playas_del_Coco_Province_of_Guanacaste.html'>Reviews</a> - American, Bar, Pub, South American, Central American, Costa Rican, Grill
+                    %p High quality bar food. Large restaurant, mostly outdoor. Can be hot as there are only fans, no AC. Parking can be troublesome as the street in Coco is very busy. Cheap happy hour from 11-7 and live music at night. Piña Coloda recommended.
+                  %li
+                    <b><a href='http://www.sandbarcostarica.com/'>Sandbar</a> - $</b> - <a href='https://www.tripadvisor.com/Restaurant_Review-g309246-d8732451-Reviews-Sandbar-Playa_Hermosa_Province_of_Guanacaste.html'>Reviews</a> - American, Costa Rican, International, Gastropub
+                    %p Large sportsbar the on second floor with indoor & outdoor options. Outside of busy area so parking is good. Quite a few typical American food options here. They usually aren't busy and the food is good.
+                  %li
+                    <b><a href='http://www.pacifico-costarica.com/beach-club/'>Pacifico Beach Club</a> - $$</b> - <a href='https://www.tripadvisor.com/Restaurant_Review-g309243-d1792340-Reviews-Pacifico_Beach_Club_Restaurant_Bar-Playas_del_Coco_Province_of_Guanacaste.html'>Reviews</a> - Bar, Seafood, International, Pub, Costa Rican
+                    %p Small indoor restaurant with AC. Menu is a lot of seafood and a little pricey. Rarely busy. You park in the lot across the street. This is where the wedding will be.
+                  %li
+                    <b><a href='http://www.fatherrooster.com/en/index.php'>Father Rooster's</a> - $$</b> - <a href='https://www.tripadvisor.com/Restaurant_Review-g675687-d1675953-Reviews-Father_Rooster_Beachfront_Bar_Grill-Playa_Ocotal_Province_of_Guanacaste.html'>Reviews</a> - Mexican, American, Latin, Bar, Seafood, South American, Central American, Costa Rican
+                    %p Indoor & outdoor restaurant on the beach. Large menu and great service.
+                  %li
+                    <b><a href='http://www.gingercostarica.com/'>Ginger's</a> - $$$</b> - <a href='https://www.tripadvisor.com/Restaurant_Review-g309246-d1147444-Reviews-Ginger-Playa_Hermosa_Province_of_Guanacaste.html'>Reviews</a> - Asian, Vegetarian Friendly
+                    %p Two-story outdoor restaurant with fusion tapas menu. Great for sharing and especially good desserts. Use bug spray.
+                  %li
+                    <b><a href='http://www.citroncoco.com/'>Citron</a> - $$$</b> - <a href='https://www.tripadvisor.com/Restaurant_Review-g309243-d1995912-Reviews-Citron_Restaurante-Playas_del_Coco_Province_of_Guanacaste.html'>Reviews</a> - Seafood, Fusion, Gluten Free Options
+                    %p Small restaurant near Coco beach. Indoor area with AC and outdoor area available. Near a few tourist-y shops. Has the best salad hands-down.
+            %li.accordion-item{'data-accordion-item' => ''}
+              %a.accordion-title{href: '#'}
+                What to bring with you
+              .accordion-content{'data-tab-content' => ''}
+                %ul
+                  %li <b>Cash (USD).</b> This is accepted most places and some restaurants include $ prices on the menu as well as the local currency, Colones. Credit is also often accepted, but cash is the safest bet.
+                  %li <b>Credit card.</b> These are accepted most places and the venue takes credit only. We will provide beer & wine for the wedding reception but hard liquor has to be purchased separately.
+                  %li <b>Passport.</b> Please check when your's expires and if it does or you don't have one yet please obtain one using the information provided <a href='https://travel.state.gov/content/passports/en/passports/apply.html'>here</a>. The cost is about $110. Standard processing time is 6 weeks but you'd want to add some buffer time to that.
+                  %li <b>Driver's license.</b> From our experience carding isn't common, but a second form of ID is nice to have in case you need it, like for renting a car.
+                  %li <b>Tennis shoes or other lace up shoe.</b> This is only if you are interested in going on excursions.
+                  %li <b>Sunglasses.</b> You will need them, it is sunny near the equator. A cheap pair is about $8 here so not a big deal if you aren't picky and forget.
+                  %li <b>Sunblock.</b> We will bring some but it would be good for everyone to bring plenty. This is one of the items with a large markup in Costa Rica.
+                  %li <b>Bug spray.</b> Since many restaurants are at least partially outdoor this is a must-have.
+                  %li <b>Swimming suit.</b> Nobody is swimming naked in the pool. Matt's insisting on it.
+                  %li <b>Sandals or flip flops.</b> Best for the pool and the ocean.
+                  %li <b>Your game face and your wonderful, trip-going self!</b>
+            %li.accordion-item{'data-accordion-item' => ''}
+              %a.accordion-title{href: '#'}
+                Communications
+              .accordion-content{'data-tab-content' => ''}
+                %p
+                  Unless you have international data you will want to consider getting a prepaid phone. On our trips to Costa Rica we have done without, but we were with people who had been there before. This <a href='http://costa-rica-guide.com/practical/sim-card-local-phone/'>website</a> has some good information about where you can find one and what options you have. This cost is ~$20-30. We also recommend you use a VOIP service such as Google Voice or Viber to allow you to call using wifi as a free alternative. For the wedding, Matt and I will have a prepaid phone and the number can be found on our <a href='#contact'>Contact Us</a> page.
     .section
       .row.top-row
         .large-12.large-centered.columns
           .text-center
             %span.dashed-shadow{'data-text' => 'Contact Us'} Contact Us
-      .row
-        .large-10.large-centered.columns
-          = simple_form_for @contact, html: { class: 'form-horizontal' } do |f|
-            = f.input :name, required: true
-            = f.input :email, required: true
-            = f.input :message, as: :text, required: true, input_html: { rows: 5 }
-            = f.button :submit, 'Send message', class: 'btn btn-primary'
+      .row.text-center
+        .small-12.columns
+          %a{href: 'mailto:veryboveriwedding@gmail.com', class: 'button'} Send email
+          %a{href: 'tel:913-912-3379', class: 'button'} Call Matt (913.912.3379)
+          %a{href: 'tel:913-912-3379', class: 'button'} Call Heather (913.730.6135)
 
 %link{href: 'http://fonts.googleapis.com/css?family=Cookie', rel: 'stylesheet', type: 'text/css'}
 %link{href: 'http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700', rel: 'stylesheet', type: 'text/css'}
@@ -274,15 +345,16 @@
 %link{href: '//fonts.googleapis.com/css?family=Roboto:200,400,600', rel: 'stylesheet', type: 'text/css'}
 %link{href: 'http://fonts.googleapis.com/css?family=Mr+Dafoe', rel: 'stylesheet', type: 'text/css'}
 
+// sectionsColor: ['#422E25', '#B9E8CE', '#dcf4e7', '#D3E7DC', '#ddd', '#eee', '#fffffe'],
+
 :javascript
   $(document).ready(function() {
     $('#fullpage').fullpage({
-      sectionsColor: ['#422E25', '#B9E8CE', '#D3E7DC', '#ddd', '#eee'],
+      anchors:['slideshow', 'weddingweek', 'weddingday', 'weddingparty', 'weddingdetails', 'travelinfo', 'contact'],
+      sectionsColor: ['#eee', '#eee', '#eee', '#eee', '#eee', '#eee', '#eee'],
       loopBottom: true,
       menu: '#example-menu',
       recordHistory: false,
-      navigationTooltips: ['Album', 'The Wedding', 'About Us', 'FAQ', 'Contact Us'],
-      navigation: true,
       showActiveTooltip: true,
       responsiveWidth: 1100
     });

@@ -3,11 +3,15 @@
 %table
   %thead
     %tr
+      %th Signups
+      %th RSVPs
       %th Hotel Rooms
-      %th Below Drinking Age
+      %th Non-Drinkers
 
   %tbody
     %tr
+      %td= Guest.count + User.count
+      %td= User.where(rsvp: true).count
       %td= User.hotel_rooms
       %td= Guest.below_drinking_age
 
@@ -16,15 +20,15 @@
     %thead
       %tr
         %th Name
-        %th Dietary Restriction
-        %th Special Instructions
+        %th Food Preference
+        %th Allergy
 
     %tbody
       - @dietary_restricted_guests.each do |guest|
         %tr
           %td= guest.name
-          %td= guest.dietary_restriction
-          %td= guest.special_instructions
+          %td= guest.food_preference
+          %td= guest.allergy
 
 %h3 Guest List
 
@@ -33,9 +37,10 @@
     %tr
       %th Name
       %th Role
+      %th Hotel
       %th Hotel Rooms
-      %th Drinking Age
-      %th Registrations
+      %th Non-Drinker
+      %th RSVP
       %th Actions
 
   %tbody
@@ -43,12 +48,20 @@
       %tr
         %td= link_to guest.name, guest_path(guest)
         %td= guest.role
+        %td
+          - if guest.try(:user)
+            = guest.user.hotel
+          - else
+            = guest.hotel
         %td= guest.try(:hotel_rooms) || 0
         %td= guest.try(:below_drinking_age) || false
         %td
           %ul
-            - guest.registrations.each do |rsvp|
-              %li= rsvp
+            %li
+              - if guest.try(:rsvp)
+                %i.fa.fa-check
+              - else
+                %i.fa.fa-times
         - if guest.class.name == 'Guest'
           %td.actions
             %ul

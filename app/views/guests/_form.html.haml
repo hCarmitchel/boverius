@@ -12,21 +12,12 @@
     = f.label :last_name
     = f.text_field :last_name
   .field
-    = f.label :dietary_restriction
-    = f.select :dietary_restriction, ['Vegetarian', 'Vegan', 'Allergy', 'Other'], { include_hidden: false, include_blank: 'None' }, id: 'restriction'
-  .field{id: 'special_instructions'}
-    = f.label :special_instructions
-    %i (please explain allergies or other restrictions)
-    = f.text_area :special_instructions, rows: 3
-  .inline-fields
-    = f.fields_for :rsvps do |builder|
-      .field.switch.large
-        = builder.label builder.object.rsvp_type
-        = builder.hidden_field :rsvp_type, value: builder.object.rsvp_type
-        = builder.check_box :going, class: 'hide'
-        = builder.label :going, class: 'switch-paddle' do
-          %span.switch-active{'aria-hidden' => 'true'} Yes
-          %span.switch-inactive{'aria-hidden' => 'true'} No
+    = f.label :food_preference
+    = f.select :food_preference, User.food_preferences.keys, { include_hidden: false, include_blank: 'None' }, id: 'restriction'
+  .field{id: 'allergy'}
+    = f.label :allergy do
+      Food Allergies or Restrictions
+    = f.text_area :allergy
   .field.switch.large
     = f.label :below_drinking_age
     = f.check_box :below_drinking_age, class: 'hide'
@@ -36,7 +27,7 @@
   - if current_user.admin
     .field
       = f.label :role
-      = f.select :role, Guest::ROLES, { include_hidden: false, include_blank: 'None' }
+      = f.select :role, Guest.roles.keys, { include_hidden: false, include_blank: 'None' }
 
   .actions
     = f.submit 'Save', class: 'button success float-left'

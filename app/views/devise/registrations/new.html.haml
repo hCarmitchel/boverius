@@ -8,33 +8,40 @@
     = f.label :last_name
     = f.text_field :last_name
   .field
-    = f.label :dietary_restriction
-    = f.select :dietary_restriction, ['Vegetarian', 'Vegan', 'Allergy', 'Other'], { include_hidden: false, include_blank: 'None' }
-  .field{id: 'special_instructions'}
-    = f.label :special_instructions
-    %i (please explain allergies or other restrictions)
-    = f.text_area :special_instructions, rows: 3
-  .field
-    = f.label :hotel_rooms do
-      %span.has-tip{'aria-haspopup' => 'true', 'data-tooltip' => '', title: 'Indicate the total number of hotel rooms for your party'}
-        Hotel Rooms
-    = f.number_field :hotel_rooms
-  = f.fields_for :rsvps do |builder|
-    .field
-      = builder.label builder.object.rsvp_type
-      = builder.hidden_field :rsvp_type, value: builder.object.rsvp_type
-      = builder.check_box :going, class: 'hide'
-      = builder.label :going, class: 'switch-paddle' do
+    = f.label :food_preference
+    = f.select :food_preference, User.food_preferences.keys, { include_hidden: false, include_blank: 'None' }
+  .field{id: 'allergy'}
+    = f.label :allergy do
+      Food Allergies or Restrictions
+    = f.text_area :allergy
+  .fieldset
+    .row
+      .small-4.columns
+        = f.label :hotel
+        = f.select :hotel, User.hotels.keys, { include_hidden: false, include_blank: 'None' }
+        = f.label :hotel_rooms do
+          %span.has-tip{'aria-haspopup' => 'true', 'data-tooltip' => '', title: 'Indicate the number of hotel rooms for your party'}
+            Rooms
+        = f.number_field :hotel_rooms, min: 0, max: 5
+      .small-4.columns
+        .hotel
+  .inline-fields
+    .field.switch.large
+      = f.label :rsvp do
+        %span.has-tip{'aria-haspopup' => 'true', 'data-tooltip' => '', title: 'Please RSVP by October 1st 2017 so we may get an accurate guest count'}
+          RSVP
+      = f.check_box :rsvp, class: 'hide'
+      %label.switch-paddle{for: 'user_rsvp'}
         %span.switch-active{'aria-hidden' => 'true'} Yes
         %span.switch-inactive{'aria-hidden' => 'true'} No
-  .field
-    = f.label :reminders do
-      %span.has-tip{'aria-haspopup' => 'true', 'data-tooltip' => '', title: "If left checked, we will send an email reminder if no rsvps have been sent a month from event"}
-        Reminders
-    = f.check_box :reminders, class: 'hide'
-    %label.switch-paddle{for: 'user_reminders'}
-      %span.switch-active{'aria-hidden' => 'true'} Yes
-      %span.switch-inactive{'aria-hidden' => 'true'} No
+    .field.switch.large#reminder-field{class: ('hide' if resource.rsvp)}
+      = f.label :reminders do
+        %span.has-tip{'aria-haspopup' => 'true', 'data-tooltip' => '', title: 'If left checked, we will send an email reminder if no rsvps have been sent a month from event'}
+          Reminders
+      = f.check_box :reminders, class: 'hide'
+      %label.switch-paddle{for: 'user_reminders'}
+        %span.switch-active{'aria-hidden' => 'true'} Yes
+        %span.switch-inactive{'aria-hidden' => 'true'} No
   .field
     = f.label :email
     = f.email_field :email, autofocus: true
@@ -42,10 +49,10 @@
     = f.label :password do
       %span.has-tip{'aria-haspopup' => 'true', 'data-tooltip' => '', title: '8 characters minimum'}
         Password
-    = f.password_field :password, autocomplete: 'off'
+    = f.password_field :password, autocomplete: 'on'
   .field
     = f.label :password_confirmation
-    = f.password_field :password_confirmation, autocomplete: 'off'
+    = f.password_field :password_confirmation, autocomplete: 'on'
   .field
     = f.label :invite_code do
       %span.has-tip{'aria-haspopup' => 'true', 'data-tooltip' => '', title: 'This code will be on your invitation'}

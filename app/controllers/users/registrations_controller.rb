@@ -5,7 +5,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/sign_up
   def new
     @user = User.new
-    build_rsvps
     super
   end
 
@@ -16,7 +15,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
-    build_rsvps
     super
   end
 
@@ -51,17 +49,25 @@ class Users::RegistrationsController < Devise::RegistrationsController
     devise_parameter_sanitizer.for(:account_update) << override_params
   end
 
+  def update_resource(resource, params)
+    resource.update_without_password(params)
+  end
+
   private
 
   def override_params
-    [:first_name, :last_name, :dietary_restriction, :hotel_rooms, :special_instructions, :role, :reminders, :invite_code, :rsvps_attributes => [:id, :going, :rsvp_type]]
-  end
-
-  def build_rsvps(id = @user.try(:id))
-    Rsvp::TYPES.each do |rsvp|
-      next if id.present? && Rsvp.where(rsvper_id: id, rsvp_type: rsvp, rsvper_type: 'User').present?
-      @user.rsvps.build(rsvp_type: rsvp)
-    end
+    [
+      :first_name,
+      :last_name,
+      :food_preference,
+      :hotel_rooms,
+      :role,
+      :reminders,
+      :invite_code,
+      :hotel,
+      :rsvp,
+      :allergy
+    ]
   end
 
   # The path used after sign up.

@@ -6,7 +6,7 @@ class GuestsController < ApplicationController
   # GET /guests.json
   def index
     @guests = Guest.all + User.all
-    @dietary_restricted_guests = Guest.where.not(dietary_restriction: '') + User.where.not(dietary_restriction: '')
+    @dietary_restricted_guests = Guest.where.not(food_preference: '') + User.where.not(food_preference: '')
   end
 
   # GET /guests/1
@@ -17,12 +17,10 @@ class GuestsController < ApplicationController
   # GET /guests/new
   def new
     @guest = Guest.new
-    build_rsvps
   end
 
   # GET /guests/1/edit
   def edit
-    build_rsvps
   end
 
   # POST /guests
@@ -75,16 +73,10 @@ class GuestsController < ApplicationController
     @guest = Guest.find(params[:id])
   end
 
-  def build_rsvps(id = @guest.try(:id))
-    Rsvp::TYPES.each do |rsvp|
-      next if id.present? && Rsvp.where(rsvper_id: id, rsvp_type: rsvp, rsvper_type: 'Guest').present?
-      @guest.rsvps.build(rsvp_type: rsvp)
-    end
-  end
-
   # Never trust parameters from the scary internet, only allow the white list through.
   def guest_params
     params['guest']['user_id'] = current_user.id
-    params['guest'].permit(:last_name, :first_name, :dietary_restriction, :special_instructions, :user_id, :below_drinking_age, :role, :rsvps_attributes => [:id, :going, :rsvp_type])
+    params['guest'].permit(:last_name, :first_name, :food_preference, :user_id,
+      :below_drinking_age, :role, :hotel, :allergy)
   end
 end

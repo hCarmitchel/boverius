@@ -11,37 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160330164200) do
-
-  create_table "contacts", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 20170126201616) do
 
   create_table "guests", force: :cascade do |t|
-    t.string   "first_name",           default: "",    null: false
-    t.string   "last_name",            default: "",    null: false
-    t.string   "role"
-    t.boolean  "below_drinking_age",   default: false, null: false
-    t.string   "dietary_restriction"
-    t.text     "special_instructions"
-    t.integer  "user_id",                              null: false
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.string   "first_name",         default: "",    null: false
+    t.string   "last_name",          default: "",    null: false
+    t.integer  "role",               default: 0,     null: false
+    t.boolean  "below_drinking_age", default: false, null: false
+    t.integer  "food_preference"
+    t.text     "allergy"
+    t.integer  "user_id",                            null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+  end
+
+  create_table "invite_codes", force: :cascade do |t|
+    t.string  "value",              null: false
+    t.integer "guests", default: 1, null: false
   end
 
   create_table "registries", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "url",  default: "", null: false
-  end
-
-  create_table "rsvps", force: :cascade do |t|
-    t.string   "rsvp_type",   default: "",    null: false
-    t.boolean  "going",       default: false, null: false
-    t.integer  "rsvper_id",                   null: false
-    t.string   "rsvper_type",                 null: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -57,12 +48,15 @@ ActiveRecord::Schema.define(version: 20160330164200) do
     t.string   "last_sign_in_ip"
     t.boolean  "admin",                  default: false, null: false
     t.boolean  "reminders",              default: true,  null: false
+    t.integer  "hotel"
     t.integer  "hotel_rooms",            default: 0,     null: false
     t.string   "first_name",             default: "",    null: false
     t.string   "last_name",              default: "",    null: false
-    t.string   "role"
-    t.string   "dietary_restriction"
-    t.text     "special_instructions"
+    t.string   "role",                   default: "0",   null: false
+    t.text     "allergy"
+    t.boolean  "rsvp",                   default: false, null: false
+    t.string   "food_preference"
+    t.integer  "invite_code_id"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
   end

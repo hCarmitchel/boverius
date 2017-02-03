@@ -1,7 +1,16 @@
+/*
 $orange: #F26B46;
 $peach: #f0ad4e;
 $green: #B9E8CE;
 $sage: #D3E7DC;
+$light-orange: #FFB287;
+$gray: #A09F9C;
+*/
+
+$orange: #EF835F;
+$peach: #f0ad4e;
+$green: #B9E8CE;
+$sage: #A8DBB2;
 $light-orange: #FFB287;
 $gray: #A09F9C;
 
@@ -130,55 +139,14 @@ ul {
   margin: 0 15px 15px 0;
 }
 
-#fp-nav ul li a span, .fp-slidesNav ul li a span {
-  background-color: $orange;
-}
-
-.slide {
-  color: white;
-}
-
-/* Adding background for the slides
-* --------------------------------------- */
-.slide:nth-of-type(1) {
-  background-image:
-    linear-gradient(
-      rgba(0, 0, 0, 0.5),
-      rgba(0, 0, 0, 0.5)
-    ),
-    url('wood-compressor-tiny.jpg');
-}
-.slide:nth-of-type(2) {
-  background-image:
-    linear-gradient(
-      rgba(0, 0, 0, 0.5),
-      rgba(0, 0, 0, 0.5)
-    ),
-    url('volcano-compressor.jpg');
-}
-.slide:nth-of-type(3) {
-  background-image:
-    linear-gradient(
-      rgba(0, 0, 0, 0.5),
-      rgba(0, 0, 0, 0.5)
-    ),
-    url('sillouette-compressor.jpg');
-}
-.slide:nth-of-type(4) {
-  background-image:
-    linear-gradient(
-      rgba(0, 0, 0, 0.5),
-      rgba(0, 0, 0, 0.5)
-    ),
-    url('waters_edge-compressor.jpg');
-}
-.slide:nth-of-type(5) {
+.front-page {
   background-image:
     linear-gradient(
       rgba(0, 0, 0, 0.5),
       rgba(0, 0, 0, 0.5)
     ),
     url('villa_kissing_3-compressor.jpg');
+  color: white;
   font-family: 'Pacifico', cursive;
   line-height: 1.5em;
   font-size: 3vw;
@@ -195,10 +163,6 @@ ul {
   display:block;
 }
 
-#fp-nav.right {
-  right: 55px;
-}
-
 span i.fa.fa-lg {
   font-size: 5vw;
   margin-top: 20px;
@@ -209,8 +173,12 @@ span i.fa.fa-lg {
   }
 }
 
-#fp-nav ul li .fp-tooltip {
+span.has-tip {
   color: $orange;
+  border: none;
+  :after {
+    context: 'x';
+  }
 }
 
 .shadow {
@@ -225,104 +193,39 @@ span i.fa.fa-lg {
 }
 
 @charset "UTF-8";
-@import url(http://fonts.googleapis.com/css?family=PT+Sans:700|Pacifico|Changa+One);
+@import url(http://fonts.googleapis.com/css?family=PT+Sans:700|Pacifico|Changa+One|Amatic+SC);
 @import "compass";
 
 span {
   display: block;
 }
 
-.slide-wedding {
+.title, .names {
   font-family: "Changa One", sans-serif;
   font-weight: 400;
   text-transform: uppercase;
-  font-size: 10vw;
+  font-size: 85px;
   letter-spacing: .1em;
-  line-height: 1.5em;
+  line-height: 1em;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
-  opacity: 0.6;
 }
 
-.line-3 {
+.title {
   color: $green;
-  font-family: "PT Sans", sans-serif;
-  font-size: 3vw;
-  text-transform: uppercase;
-  letter-spacing: .3vw;
-  text-shadow: 0 -1.5px 0 $light-orange,
-    0 10px 8px rgba(0,0,0,.4),
-    0 2px 10px rgba(0,0,0,5),
-    0 30px 10px rgba(0,0,0,.18),
-    0 15px 10px rgba(0,0,0,.21);
-}
-.line-3:before, .line-3:after {
-  content: " ";
-  position: absolute;
-  width: 4vw;
-  height: .7vw;
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
-}
-.line-3:before {
-  margin: 1.5vw 0 0 -5vw;
-}
-.line-3:after {
-  margin: 1.5vw 0 0 .5vw;
+  margin: 100px 0;
 }
 
-.line-4 {
-  width: 100%;
-  position: relative;
-  font-size: 18px;
-  margin: 50px 0 0;
-}
-
-.line-5 {
+.names {
+  color: $green;
   margin: 20px 0 50px;
   position: relative;
-  margin: 50px auto;
+  margin: 30px auto;
   display: block;
   font-size: 20px;
-}
-.line-5 a {
-  text-decoration: none;
-  display: inline-block;
-  text-align: left;
-  color: $light-orange;
-}
-.line-5 a:nth-child(1) {
-  text-align: right;
-}
-.line-5 a:nth-child(1):after {
-  content: "";
-  font-family: FontAwesome;
-  font-style: normal;
-  font-weight: normal;
-  text-decoration: inherit;
-  position: relative;
-  font-size: 30px;
-  text-align: center;
-  width: 90%;
-  top: 4px;
-  margin: 0;
-  padding: 0 20px;
-}
-
-.line-6 {
-  font-family: "PT Sans", sans-serif;
-  font-size: 16px;
-  letter-spacing: 5px;
-}
-.line-6:before, .line-6:after {
-  content: "";
-  font-family: FontAwesome;
-  font-style: normal;
-  font-weight: normal;
-  text-decoration: inherit;
-  position: relative;
-  font-size: 16px;
-  margin: 0 10px;
-  top: 2px;
+  i {
+    color: white;
+    padding: 0 10px;
+  }
 }
 
 .sorta-block {
@@ -465,6 +368,7 @@ header h1 {
 }
 
 .cd-timeline-img {
+  background: $sage;
   position: absolute;
   top: 0;
   left: 0;
@@ -483,9 +387,6 @@ header h1 {
   margin-left: -12px;
   margin-top: -12px;
 }
-.cd-timeline-img {
-  background: $light-orange;
-}
 @media only screen and (min-width: 1170px) {
   .cd-timeline-img {
     width: 60px;
@@ -497,8 +398,8 @@ header h1 {
     -webkit-backface-visibility: hidden;
   }
   .box .box-icon {
-    width: 60px;
-    height: 60px;
+    width: 116px;
+    height: 26px;
     span {
       font-size: 1rem;
     }
@@ -608,7 +509,8 @@ $cut-distance:3px;//$distance/4;
   top: $distance;
   left: $distance;
   display: inline-block;
-  font-family: 'Cookie', cursive;
+  // font-family: 'Cookie', cursive;
+  font-family: 'Amatic SC';
   font-size: 8vw;
 }
 .dashed-shadow:before{
@@ -637,6 +539,22 @@ $cut-distance:3px;//$distance/4;
   text-shadow:$cut-distance $cut-distance $background-color;
 }
 
+.box.current_role {
+  background-color: $orange;
+
+  .info p {
+    color: white;
+  }
+}
+
+.fp-controlArrow {
+  opacity: .3;
+}
+
+.fp-controlArrow:hover {
+  opacity: .7;
+}
+
 .no-js .top-bar {
   display: none;
 }
@@ -648,21 +566,21 @@ $cut-distance:3px;//$distance/4;
   display: block;
   margin-top: 60px;
   background-color: white;
-   }
+}
 
 .box-icon {
-  background-color: $light-orange;
+  background-color: $sage;
   box-shadow: 0 0 0 4px white, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
-  border-radius: 50%;
   display: table;
   margin: 0 auto;
   height: 40px;
   width: 40px;
-  margin-top: -41px; }
+  margin-top: -32px; }
   .box-icon span {
     color: #fff;
     display: table-cell;
     font-size: .8rem;
+    font-family: "Droid Serif", serif;
     text-align: center;
     vertical-align: middle; }
 
@@ -703,6 +621,7 @@ $cut-distance:3px;//$distance/4;
 .accordion-title {
   background-color: $light-orange;
   color: white;
+  padding: .75rem 1rem;
 }
 
 .accordion-title:hover, .accordion-title:focus {
@@ -712,4 +631,13 @@ $cut-distance:3px;//$distance/4;
 
 .accordion {
   box-shadow: 0 3px 0 #d7e4ed;
+
+  .accordion-content {
+    color: #717171;
+    font-size: .6rem;
+  }
+}
+
+.expand > span.dashed-shadow {
+  padding-bottom: 40vh;
 }

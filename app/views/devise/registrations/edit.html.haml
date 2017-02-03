@@ -9,28 +9,42 @@
     = f.label :last_name
     = f.text_field :last_name
   .field
-    = f.label :dietary_restriction
-    = f.select :dietary_restriction, ['Vegetarian', 'Vegan', 'Allergy', 'Other'], { include_hidden: false, include_blank: 'None' }
-  .field{id: 'special_instructions'}
-    = f.label :special_instructions do
-      %span.has-tip{'aria-haspopup' => 'true', 'data-tooltip' => '', title: 'Please explain allergies or other restrictions'}
-        Special Instructions
-    = f.text_area :special_instructions
-  .field
-    = f.label :hotel_rooms do
-      %span.has-tip{'aria-haspopup' => 'true', 'data-tooltip' => '', title: 'Indicate the number of hotel rooms for your party'}
-        Hotel Rooms
-    = f.number_field :hotel_rooms, min: 0, max: 5
+    = f.label :food_preference
+    = f.select :food_preference, User.food_preferences.keys, { include_hidden: false, include_blank: 'None' }
+  .field{id: 'allergy'}
+    = f.label :allergy do
+      Food Allergies or Restrictions
+    = f.text_area :allergy
+  .fieldset
+    .row
+      .small-4.columns
+        = f.label :hotel
+        = f.select :hotel, User.hotels.keys, { include_hidden: false, include_blank: 'None' }
+        = f.label :hotel_rooms do
+          %span.has-tip{'aria-haspopup' => 'true', 'data-tooltip' => '', title: 'Indicate the number of hotel rooms for your party'}
+            Rooms
+        = f.number_field :hotel_rooms, min: 0, max: 5
+      .small-4.columns
+        .hotel
   - if current_user.admin
     .field
       = f.label :role
-      = f.select :role, Guest::ROLES, { include_hidden: false, include_blank: 'None' }
-  = f.fields_for :rsvps do |builder|
+      = f.select :role, Guest.roles.keys, { include_hidden: false, include_blank: 'None' }
+  .inline-fields
     .field.switch.large
-      = builder.label builder.object.rsvp_type
-      = builder.hidden_field :rsvp_type, value: builder.object.rsvp_type
-      = builder.check_box :going, class: 'hide'
-      = builder.label :going, class: 'switch-paddle' do
+      = f.label :rsvp do
+        %span.has-tip{'aria-haspopup' => 'true', 'data-tooltip' => '', title: 'Please RSVP by October 1st 2017 so we may get an accurate guest count'}
+          RSVP
+      = f.check_box :rsvp, class: 'hide'
+      %label.switch-paddle{for: 'user_rsvp'}
+        %span.switch-active{'aria-hidden' => 'true'} Yes
+        %span.switch-inactive{'aria-hidden' => 'true'} No
+    .field.switch.large#reminder-field{class: ('hide' if resource.rsvp)}
+      = f.label :reminders do
+        %span.has-tip{'aria-haspopup' => 'true', 'data-tooltip' => '', title: "If left checked, we will send an email reminder if no rsvps have been sent a month from event"}
+          Reminders
+      = f.check_box :reminders, class: 'hide'
+      %label.switch-paddle{for: 'user_reminders'}
         %span.switch-active{'aria-hidden' => 'true'} Yes
         %span.switch-inactive{'aria-hidden' => 'true'} No
   .field
@@ -39,33 +53,12 @@
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
     %div
       Currently waiting confirmation for: #{resource.unconfirmed_email}
-  .field
-    = f.label :password do
-      %span.has-tip{'aria-haspopup' => 'true', 'data-tooltip' => '', title: "Leave blank if you don't want to change it"}
-        Password
-    = f.password_field :password, autocomplete: 'off'
-  .field
-    = f.label :password_confirmation
-    = f.password_field :password_confirmation, autocomplete: 'off'
-  .field.switch.large
-    = f.label :reminders do
-      %span.has-tip{'aria-haspopup' => 'true', 'data-tooltip' => '', title: "If left checked, we will send an email reminder if no rsvps have been sent a month from event"}
-        Reminders
-    = f.check_box :reminders, class: 'hide'
-    %label.switch-paddle{for: 'user_reminders'}
-      %span.switch-active{'aria-hidden' => 'true'} Yes
-      %span.switch-inactive{'aria-hidden' => 'true'} No
-  .field
-    = f.label :current_password do
-      %span.has-tip{'aria-haspopup' => 'true', 'data-tooltip' => '', title: 'We need your current password to confirm your changes'}
-        Current Password
-    = f.password_field :current_password, autocomplete: 'off'
   .actions
     = f.submit 'Update', class: 'button'
 
 %h3 Guests
 
-%p Add all guests that are in your party so we can account for plates
+%p Add all guests that are in your party who are attending so we can account for plates. An RSVP for the user means all guests are attending.
 
 - if resource.guests.any?
   %table
@@ -73,18 +66,23 @@
       %tr
         %th First name
         %th Last name
-        %th Registrations
-        %th
+        %th Food Preference
+        %th Food Allergies or Restrictions
+        %th Drinking Age
+        %th Actions
 
     %tbody
       - resource.guests.each do |guest|
         %tr
           %td= guest.first_name
           %td= guest.last_name
+          %td= guest.food_preference || 'None'
+          %td= guest.allergy.present? ? guest.allergy : 'None'
           %td
-            %ul
-              - guest.registrations.each do |rsvp|
-                %li= rsvp
+            - if !guest.below_drinking_age
+              %i.fa.fa-check
+            - else
+              %i.fa.fa-times
           %td.actions
             %ul
               %li
@@ -94,8 +92,8 @@
                 = link_to guest, class: 'button alert', method: :delete, data: { confirm: 'Are you sure?' } do
                   %i.fa.fa-trash
 
-= link_to 'New Guest', new_guest_path, class: 'button success'
-
+- if resource.can_invite_guest?
+  = link_to 'New Guest', new_guest_path, class: 'button success'
 
 %h3 Cancel my account
 %p

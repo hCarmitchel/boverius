@@ -4,19 +4,25 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :rsvps, dependent: :destroy, as: :rsvper
-  has_many :guests, dependent: :destroy
+  enum hotel: [ 'Coco Beach Hotel', 'Bosque Del Mar', 'Hiatt', 'Other' ]
+  enum food_preference: [ 'Fish', 'Beef', 'Vegetarian', 'Kids meal' ]
 
-  accepts_nested_attributes_for :rsvps
+  has_many :guests, dependent: :destroy
+  belongs_to :invite_code
 
   validate :invite_code_valid, on: :create
-  validate :special_instructions_correct
 
   attr_accessor :invite_code
 
   def invite_code_valid
-    message = 'invalid. Please use the code on your invitation or contact the Bride or Groom'
-    self.errors.add(:invite_code, message) unless self.invite_code == 'eatdrink&bemarried2017'
+    if InviteCode.find_by(value: self.invite_code)
+      self.invite_code_id = InviteCode.find_by(value: self.invite_code).id
+    end
+    self.errors.add(:invite_code, 'invalid. Please use the code on your invitation or contact the Bride or Groom')
+  end
+
+  def can_invite_guest?
+    guests.count < InviteCode.find(invite_code_id).guests
   end
 
   def self.hotel_rooms
@@ -27,17 +33,7 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
-  def registrations
-    rsvps.select { |rsvp| rsvp.going }.map(&:rsvp_type)
-  end
-
-  def rsvp?
-    registrations.any?
-  end
-
-  def special_instructions_correct
-    return if dietary_restriction.nil? || special_instructions.present?
-    message = 'must be filled out for "Allergy" or "Other" dietary restriction types'
-    self.errors.add(:special_instructions, message) if ['Allergy', 'Other'].include?(dietary_restriction)
+  def role_class(role)
+    (self.role == role) && 'current_role'
   end
 end

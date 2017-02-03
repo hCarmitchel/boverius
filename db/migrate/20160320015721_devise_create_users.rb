@@ -21,12 +21,15 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
       t.boolean  :admin, null: false, default: false
       t.boolean  :reminders, null: false, default: true
+      t.integer  :hotel
       t.integer  :hotel_rooms, null: false, default: 0
       t.string   :first_name, null: false, default: ''
       t.string   :last_name, null: false, default: ''
-      t.string   :role
-      t.string   :dietary_restriction
-      t.text     :special_instructions
+      t.string   :role, null: false, default: 0
+      t.text     :allergy
+      t.boolean  :rsvp, null: false, default: false
+      t.string   :food_preference
+      t.integer  :invite_code_id
 
       ## Confirmable
       # t.string   :confirmation_token

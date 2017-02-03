@@ -16,30 +16,20 @@
 //= require_tree .
 
 $(document).on('ready page:load', function() {
-  $('#fp-nav').addClass('hide-for-small-only');
-  $('#fp-nav').addClass('hide-for-medium-only');
-
-  $('.details').hide();
-  $('.info').hover(
-    function () {
-      $(this).find('.details').fadeIn();
-    },
-    function () {
-      $(this).find('.details').delay(1000).fadeOut();
-    }
-  );
-
   $(function() {
-    if ($('#user_dietary_restriction').val() == 'Allergy' || $('#user_dietary_restriction').val() == 'Other') {
-      $('#special_instructions').show();
-    } else {
-      $('#special_instructions').hide();
-    }
-    $('#user_dietary_restriction').change(function(){
-      if ($(this).val() == 'Allergy' || $(this).val() == 'Other') {
-        $('#special_instructions').show();
+    $('div.current_role').find('.info')
+      .replaceWith(
+        '<div class="info"><p class="text-center"><b>You</b></p><p class="text-center">are awesome.</p></div>'
+      );
+
+    // Disable the reminders and hide when guest has RSVP'd
+    $('#user_rsvp').click(function() {
+      if ($(this).is(':checked')) {
+        $('#reminder-field').addClass('hide');
+        $('#user_reminders').prop( 'checked', false );
       } else {
-        $('#special_instructions').hide();
+        $('#user_reminders').prop( 'checked', true );
+        $('#reminder-field').removeClass('hide');
       }
     });
   });

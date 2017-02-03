@@ -3,10 +3,10 @@ class CreateGuests < ActiveRecord::Migration
     create_table :guests do |t|
       t.string   :first_name, null: false, default: ''
       t.string   :last_name, null: false, default: ''
-      t.string   :role
+      t.integer  :role, null: false, default: 0
       t.boolean  :below_drinking_age, null: false, default: false
-      t.string   :dietary_restriction
-      t.text     :special_instructions
+      t.integer  :food_preference
+      t.text     :allergy
       t.integer  :user_id, null: false
       t.timestamps null: false
     end
