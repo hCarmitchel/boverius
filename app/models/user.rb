@@ -17,8 +17,9 @@ class User < ActiveRecord::Base
   def invite_code_valid
     if InviteCode.find_by(value: self.invite_code)
       self.invite_code_id = InviteCode.find_by(value: self.invite_code).id
+    else
+      self.errors.add(:invite_code, 'invalid. Please use the code on your invitation or contact the Bride or Groom')
     end
-    self.errors.add(:invite_code, 'invalid. Please use the code on your invitation or contact the Bride or Groom')
   end
 
   def can_invite_guest?
