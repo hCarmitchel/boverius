@@ -192,22 +192,25 @@ span.has-tip {
     0 15px 10px rgba(0,0,0,.21);
 }
 
-@charset "UTF-8";
+@charset 'UTF-8';
 @import url(https://fonts.googleapis.com/css?family=PT+Sans:700|Pacifico|Changa+One|Amatic+SC);
-@import "compass";
 
 span {
   display: block;
 }
 
 .title, .names {
-  font-family: "Changa One", sans-serif;
+  font-family: 'Changa One', sans-serif;
   font-weight: 400;
   text-transform: uppercase;
-  font-size: 85px;
+  font-size: 50px;
   letter-spacing: .1em;
   line-height: 1em;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+}
+
+@media only screen and (min-width: 1170px) {
+  font-size: 85px;
 }
 
 .title {
@@ -574,7 +577,7 @@ $cut-distance:3px;//$distance/4;
   display: table;
   margin: 0 auto;
   height: 40px;
-  width: 40px;
+  min-width: 80px;
   margin-top: -32px; }
   .box-icon span {
     color: #fff;

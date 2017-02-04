@@ -14,52 +14,59 @@
         .large-10.small-centered.columns.text-center
           %span.dashed-shadow{'data-text' => 'The Wedding Week'} The Wedding Week
       .row.text-center
-        %a{class: 'button', href: 'https://www.triphobo.com/tripplans/coco/itinerary-from-kansas-city-5894efb24e8231d424000c91'} View Intinerary
-      .row
-        .small-6.columns
+        - unless current_user.rsvp
+          .large-10.small-centered.columns
+            .alert.callout
+              %h2.text-center
+                You have not yet RSVP'd! Please RSVP
+                %a{href: edit_user_registration_path} here
+        - else
+          %a{class: 'button', href: 'https://www.triphobo.com/tripplans/coco/insistingnerary-from-kansas-city-5894efb24e8231d424000c91'} View Intinerary
+      .row.large-collapse
+        .large-3.small-6.columns
           .box
             .box-icon
               %span Jan 6
             .info
               %p.text-center <b>Everyone arrives</b>
-        .small-6.columns
+        .large-3.small-6.columns
           .box
             .box-icon
               %span Jan 7
             .info
               %p.text-center <b>Pool party & boat ride</b>
-      .row
-        .small-2.columns
+        .large-3.small-6.columns
           .box
             .box-icon
               %span Jan 8
             .info
               %p.text-center <b>Day of the wedding</b>
-        .small-2.columns
+        .large-3.small-6.columns
           .box
             .box-icon
               %span Jan 9
             .info
               %p.text-center <b>A day of adventure</b>
-        .small-2.columns
+      .row.large-collapse
+        .large-3.small-6.columns
           .box
             .box-icon
               %span Jan 10
             .info
               %p.text-center <b>Relaxing and swimming</b>
-        .small-2.columns
+        .large-3.small-6.columns
           .box
             .box-icon
               %span Jan 11
             .info
               %p.text-center <b>Day of strategy</b>
-        .small-2.columns
+        .large-3.small-6.columns
           .box
             .box-icon
               %span Jan 12
             .info
               %p.text-center <b>More stuff yes probs</b>
-        .small-2.columns
+        .large-3.small-6.columns
           .box
             .box-icon
               %span Jan 13
@@ -76,67 +83,66 @@
               %h2.text-center
                 You have not yet RSVP'd! Please RSVP
                 %a{href: edit_user_registration_path} here
-      - else
-        .row
-          .large-10.small-centered.columns
-            %section#cd-timeline
-              .cd-timeline-block
-                .cd-timeline-img
-                  %img{alt: 'Picture', src: 'assets/restaurant.svg'}
-                .cd-timeline-content
-                  %p.timeline-name Lunch break
-                  %span.cd-date 11:30 - 1:00 PM
-              .cd-timeline-block
-                .cd-timeline-img
-                  %img{alt: 'Picture', src: 'assets/people.svg'}
-                .cd-timeline-content
-                  %p.timeline-name Bride & Groom get ready
-                  %span.cd-date 2:00 - 3:30 PM
-              .cd-timeline-block
-                .cd-timeline-img
-                  %img{alt: 'Picture', src: 'assets/rings.svg'}
-                .cd-timeline-content
-                  %p.timeline-name Ceremony at <a href="http://www.pacifico-costarica.com/beach-club/">Pacifico</a>
-                  %span.cd-date 4:00 PM - 4:30 PM
-              .cd-timeline-block
-                .cd-timeline-img
-                  %img{alt: 'Picture', src: 'assets/camera.svg'}
-                .cd-timeline-content
-                  %p.timeline-name Wedding party takes photos
-                  %span.cd-date 4:30 PM - 5:00 PM
-              .cd-timeline-block
-                .cd-timeline-img
-                  %img{alt: 'Picture', src: 'assets/champagne.svg'}
-                .cd-timeline-content
-                  %p.timeline-name Cocktail Hour
-                  %span.cd-date 4:30 PM - 5:30 PM
-              .cd-timeline-block
-                .cd-timeline-img
-                  %img{alt: 'Picture', src: 'assets/cake.svg'}
-                .cd-timeline-content
-                  %p.timeline-name Reception
-                  %span.cd-date 5:30 PM - 9:00 PM
-              .cd-timeline-block
-                .cd-timeline-img
-                  %img{alt: 'Picture', src: 'assets/fireworks.svg'}
-                .cd-timeline-content
-                  %p.timeline-name After party at the house
-                  %span.cd-date 10:00 PM - ???
-              %div
-              / <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+      .row
+        .large-10.small-centered.columns
+          %section#cd-timeline
+            .cd-timeline-block
+              .cd-timeline-img
+                %img{alt: 'Picture', src: 'assets/restaurant.svg'}
+              .cd-timeline-content
+                %p.timeline-name Lunch break
+                %span.cd-date 11:30 - 1:00 PM
+            .cd-timeline-block
+              .cd-timeline-img
+                %img{alt: 'Picture', src: 'assets/people.svg'}
+              .cd-timeline-content
+                %p.timeline-name Bride & Groom get ready
+                %span.cd-date 2:00 - 3:30 PM
+            .cd-timeline-block
+              .cd-timeline-img
+                %img{alt: 'Picture', src: 'assets/rings.svg'}
+              .cd-timeline-content
+                %p.timeline-name Ceremony at <a href="http://www.pacifico-costarica.com/beach-club/">Pacifico</a>
+                %span.cd-date 4:00 PM - 4:30 PM
+            .cd-timeline-block
+              .cd-timeline-img
+                %img{alt: 'Picture', src: 'assets/camera.svg'}
+              .cd-timeline-content
+                %p.timeline-name Wedding party takes photos
+                %span.cd-date 4:30 PM - 5:00 PM
+            .cd-timeline-block
+              .cd-timeline-img
+                %img{alt: 'Picture', src: 'assets/champagne.svg'}
+              .cd-timeline-content
+                %p.timeline-name Cocktail Hour
+                %span.cd-date 4:30 PM - 5:30 PM
+            .cd-timeline-block
+              .cd-timeline-img
+                %img{alt: 'Picture', src: 'assets/cake.svg'}
+              .cd-timeline-content
+                %p.timeline-name Reception
+                %span.cd-date 5:30 PM - 9:00 PM
+            .cd-timeline-block
+              .cd-timeline-img
+                %img{alt: 'Picture', src: 'assets/fireworks.svg'}
+              .cd-timeline-content
+                %p.timeline-name After party at the house
+                %span.cd-date 10:00 PM - ???
+            %div
+            / <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
     .section
       .row
         .large-12.small-centered.columns.text-center
           %span.dashed-shadow{'data-text' => 'The Wedding Party'} The Wedding Party
       .row
-        .small-6.columns
+        .large-6.columns
           .box{class: [current_user.role_class('Bride')] }
             .box-icon
               %span Bride
             .info
               %p.text-center <b>Heather</b>
               %p.text-center Carmitchel
-        .small-6.columns
+        .large-6.columns
           .box{class: [current_user.role_class('Groom')] }
             .box-icon
               %span Groom
@@ -144,42 +150,42 @@
               %p.text-center <b>Matthew</b>
               %p.text-center Boveri
       .row
-        .small-2.columns
+        .large-2.columns
           .box{class: [current_user.role_class('Man of Honor')] }
             .box-icon
               %span Man of Honor
             .info
               %p.text-center <b>Adam</b>
               %p.text-center Wieberg
-        .small-2.columns
+        .large-2.columns
           .box{class: [current_user.role_class('Bridesmaid')] }
             .box-icon
               %span Bridesmaid
             .info
               %p.text-center <b>Jenn</b>
               %p.text-center Blank
-        .small-2.columns
+        .large-2.columns
           .box{class: [current_user.role_class('Bridesmaid')] }
             .box-icon
               %span Bridesmaid
             .info
               %p.text-center <b>Emily</b>
               %p.text-center Brubaker
-        .small-2.columns
+        .large-2.columns
           .box{class: [current_user.role_class('Best Man')] }
             .box-icon
               %span Best Man
             .info
               %p.text-center <b>Philip</b>
               %p.text-center Brubaker
-        .small-2.columns
+        .large-2.columns
           .box{class: [current_user.role_class('Groomsman')] }
             .box-icon
               %span Groomsman
             .info
               %p.text-center <b>Josh</b>
               %p.text-center Noeldner
-        .small-2.columns
+        .large-2.columns
           .box{class: [current_user.role_class('Groomsman')] }
             .box-icon
               %span Groomsman
@@ -243,7 +249,7 @@
       .row
         .large-12.large-centered.columns
           .text-center
-            %a{class: 'button'} Download PDF
+            / %a{class: 'button'} Download PDF
       .row
         .large-12.large-centered.columns
           %ul.accordion{'data-accordion' => ''}
@@ -334,7 +340,7 @@
           .text-center
             %span.dashed-shadow{'data-text' => 'Contact Us'} Contact Us
       .row.text-center
-        .small-12.columns
+        .large-12.columns
           %a{href: 'mailto:veryboveriwedding@gmail.com', class: 'button'} Send email
           %a{href: 'tel:913-912-3379', class: 'button'} Call Matt (913.912.3379)
           %a{href: 'tel:913-912-3379', class: 'button'} Call Heather (913.730.6135)
