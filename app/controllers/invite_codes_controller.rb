@@ -53,6 +53,6 @@ class InviteCodesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def invite_code_params
-      params.fetch(:invite_code, {})
+      params['invite_code'].permit(:value, :guests)
     end
 end
