@@ -17,6 +17,10 @@ class Guest < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def allowed_guests
+    0
+  end
+
   def guest_count
     return unless User.find_by(first_name: first_name, last_name: last_name).any?
     self.errors.add('a guest may not have the same name as another user')
