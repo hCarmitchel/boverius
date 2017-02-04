@@ -413,6 +413,10 @@ header h1 {
   .cd-timeline-content {
     padding: .4em;
   }
+
+  .calendar .info {
+    min-height: 75px;
+  }
 }
 
 .cd-timeline-content {
@@ -624,6 +628,7 @@ $cut-distance:3px;//$distance/4;
 .accordion-title {
   background-color: $light-orange;
   color: white;
+  font-size: 1rem;
   padding: .75rem 1rem;
 }
 
@@ -637,7 +642,7 @@ $cut-distance:3px;//$distance/4;
 
   .accordion-content {
     color: #717171;
-    font-size: .6rem;
+    font-size: .75rem;
   }
 }
 
