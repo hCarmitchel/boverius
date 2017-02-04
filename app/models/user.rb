@@ -10,7 +10,10 @@ class User < ActiveRecord::Base
   has_many :guests, dependent: :destroy
   belongs_to :invite_code
 
+  validates :last_name, :first_name, presence: true
   validate :invite_code_valid, on: :create
+  validates :first_name, uniqueness: { scope: :last_name, case_sensitive: false,
+    message: 'and last name are already in use by a user who has signed up'}
 
   attr_accessor :invite_code
 
