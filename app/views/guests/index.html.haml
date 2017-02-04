@@ -41,6 +41,7 @@
       %th Hotel Rooms
       %th Non-Drinker
       %th RSVP
+      %th Allowed Guests
       %th Actions
 
   %tbody
@@ -62,6 +63,7 @@
                 %i.fa.fa-check
               - else
                 %i.fa.fa-times
+        %td= guest.allowed_guests
         - if guest.class.name == 'Guest'
           %td.actions
             %ul
@@ -80,7 +82,5 @@
               %li
                 = link_to admin_destroy_user_path(guest.id), class: 'button alert', method: :delete, data: { confirm: 'Are you sure?' } do
                   %i.fa.fa-trash
-
-
 
 = link_to 'New Guest', new_guest_path, class: 'button'

@@ -1,0 +1,17 @@
+= form_for @invite_code do |f|
+  - if @invite_code.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@invite_code.errors.count, "error")} prohibited this invite_code from being saved:"
+      %ul
+        - @invite_code.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :value
+    = f.text_field :value, autofocus: true
+  .field
+    = f.label :guests
+    = f.number_field :guests
+
+  .actions
+    = f.submit 'Save', class: 'button success float-left'

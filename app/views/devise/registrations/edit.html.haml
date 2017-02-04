@@ -53,6 +53,10 @@
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
     %div
       Currently waiting confirmation for: #{resource.unconfirmed_email}
+  - if current_user.admin?
+    .field
+      = f.label :invite_code
+      = f.select :invite_code, InviteCode.all.map(&:value), { include_hidden: false }
   .actions
     = f.submit 'Update', class: 'button'
 

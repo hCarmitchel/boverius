@@ -18,6 +18,7 @@
               %i.fa.fa-heart.faa-pulse
           - if user_signed_in? && current_user.admin
             %li= link_to 'Guests', guests_path
+            %li= link_to 'Invite Codes', invite_codes_path
       .top-bar-right.float-right.profile-menu
         - if user_signed_in?
           %ul{'data-dropdown-menu' => ''}

@@ -1,0 +1,29 @@
+%h1 Invite Codes
+
+%table
+  %thead
+    %tr
+      %th Code Value
+      %th Guests
+      %th Users
+      %th Actions
+
+  %tbody
+    - @invite_codes.each do |invite_code|
+      %tr
+        %td= invite_code.value
+        %td= invite_code.guests
+        %td
+          %ul
+          - invite_code.users.each do |user|
+            %li= user.name
+        %td.actions
+          %ul
+            %li
+              = link_to edit_invite_code_path(invite_code), class: 'button warning' do
+                %i.fa.fa-pencil-square-o
+            %li
+              = link_to invite_code, class: 'button alert', method: :delete, data: { confirm: 'Are you sure?' } do
+                %i.fa.fa-trash
+
+= link_to 'New invite code', new_invite_code_path, class: 'button'

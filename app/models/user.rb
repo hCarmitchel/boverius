@@ -33,6 +33,10 @@ class User < ActiveRecord::Base
     User.sum(:hotel_rooms)
   end
 
+  def allowed_guests
+    InviteCode.find(invite_code_id).guests
+  end
+
   def name
     "#{first_name} #{last_name}"
   end

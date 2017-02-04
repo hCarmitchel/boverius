@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :invite_codes
   resources :guests
 
   root 'application#home'
