@@ -25,7 +25,8 @@ namespace :admins do
 
   desc 'List admins'
   task :list, [] => :environment do |t, args|
-    puts "User name (id): admin"
+    puts 'User name (id): admin'
+    puts '---------------------'
     User.all.each do |user|
       puts "#{user.name} (#{user.id}): #{user.admin}"
     end
