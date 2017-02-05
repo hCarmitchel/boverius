@@ -417,7 +417,7 @@ header h1 {
 }
 
 .calendar .info {
-  min-height: 75px;
+  min-height: 60px;
 }
 
 .cd-timeline-content {
@@ -588,7 +588,8 @@ $cut-distance:3px;//$distance/4;
     color: #fff;
     display: table-cell;
     font-size: .8rem;
-    font-family: "Droid Serif", serif;
+    font-family: 'Alegreya Sans SC', serif;
+    font-weight: bold;
     text-align: center;
     vertical-align: middle; }
 
@@ -629,7 +630,9 @@ $cut-distance:3px;//$distance/4;
 .accordion-title {
   background-color: $light-orange;
   color: white;
+  font-family: 'Alegreya Sans SC', serif;
   font-size: 1rem;
+  font-weight: bold;
   padding: .75rem 1rem;
 }
 
