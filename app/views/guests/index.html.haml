@@ -10,27 +10,38 @@
 
   %tbody
     %tr
-      %td= Guest.count + User.count
+      %td= @guests.count + User.count
       %td= User.where(rsvp: true).count
       %td= User.hotel_rooms
       %td= Guest.below_drinking_age
 
-- if @dietary_restricted_guests.any?
-  %table
-    %thead
-      %tr
-        %th Name
-        %th Food Preference
-        %th Allergy
-
-    %tbody
-      - @dietary_restricted_guests.each do |guest|
-        %tr
-          %td= guest.name
-          %td= guest.food_preference
-          %td= guest.allergy
-
 %h3 Guest List
+%table
+  %thead
+    %tr
+      %th Name
+      %th Food Preference
+      %th Allergy
+      %th Actions
+
+  %tbody
+    - @guests.each do |guest|
+      %tr
+        %td= link_to guest.name, guest_path(guest)
+        %td= guest.food_preference
+        %td= guest.allergy
+        %td.actions
+          %ul
+            %li
+              = link_to edit_guest_path(guest), class: 'button warning' do
+                %i.fa.fa-pencil-square-o
+            %li
+              = link_to guest, class: 'button alert', method: :delete, data: { confirm: 'Are you sure?' } do
+                %i.fa.fa-trash
+
+= link_to 'New Guest', new_guest_path, class: 'button'
+
+%h3 User List
 
 %table
   %thead
@@ -45,42 +56,27 @@
       %th Actions
 
   %tbody
-    - @guests.each do |guest|
+    - @users.each do |user|
       %tr
-        %td= link_to guest.name, guest_path(guest)
-        %td= guest.role
-        %td
-          - if guest.try(:user)
-            = guest.user.hotel
-          - else
-            = guest.hotel
-        %td= guest.try(:hotel_rooms) || 0
-        %td= guest.try(:below_drinking_age) || false
+        %td= link_to user.name, user_path(user)
+        %td= user.role
+        %td= user.hotel
+        %td= user.try(:hotel_rooms) || 0
+        %td= user.try(:below_drinking_age) || false
         %td
           %ul
             %li
-              - if guest.try(:rsvp)
+              - if user.try(:rsvp)
                 %i.fa.fa-check
               - else
                 %i.fa.fa-times
-        %td= guest.allowed_guests
-        - if guest.class.name == 'Guest'
-          %td.actions
-            %ul
-              %li
-                = link_to edit_guest_path(guest), class: 'button warning' do
-                  %i.fa.fa-pencil-square-o
-              %li
-                = link_to guest, class: 'button alert', method: :delete, data: { confirm: 'Are you sure?' } do
-                  %i.fa.fa-trash
-        - else
-          %td.actions
-            %ul
-              %li
-                = link_to edit_registration_path(guest), class: 'button warning' do
-                  %i.fa.fa-pencil-square-o
-              %li
-                = link_to admin_destroy_user_path(guest.id), class: 'button alert', method: :delete, data: { confirm: 'Are you sure?' } do
-                  %i.fa.fa-trash
+        %td= user.allowed_guests
+        %td.actions
+          %ul
+            %li
+              = link_to edit_user_path(user), class: 'button warning' do
+                %i.fa.fa-pencil-square-o
+            %li
+              = link_to admin_destroy_user_path(user.id), class: 'button alert', method: :delete, data: { confirm: 'Are you sure?' } do
+                %i.fa.fa-trash
 
-= link_to 'New Guest', new_guest_path, class: 'button'

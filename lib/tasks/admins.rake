@@ -1,6 +1,6 @@
 namespace :admins do
   desc 'Create admin privilege'
-  task :create, [:id] => :environment do |t, args|
+  task :create, [:id] => :environment do |_, args|
     begin
       user = User.find(args[:id])
       user.admin = true
@@ -12,7 +12,7 @@ namespace :admins do
   end
 
   desc 'Remove admin privilege'
-  task :remove, [:id] => :environment do |t, args|
+  task :remove, [:id] => :environment do |_, args|
     begin
       user = User.find(args[:id])
       user.admin = false
@@ -24,7 +24,7 @@ namespace :admins do
   end
 
   desc 'List admins'
-  task :list, [] => :environment do |t, args|
+  task :list, [] => :environment do |_|
     puts 'User name (id): admin'
     puts '---------------------'
     User.all.each do |user|

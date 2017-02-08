@@ -64,6 +64,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       :role,
       :reminders,
       :invite_code,
+      :invite_code_id,
       :hotel,
       :rsvp,
       :allergy,

@@ -6,10 +6,6 @@ class InviteCodesController < ApplicationController
     @invite_codes = InviteCode.all
   end
 
-  # GET /invite_codes/1
-  def show
-  end
-
   # GET /invite_codes/new
   def new
     @invite_code = InviteCode.new
@@ -24,7 +20,7 @@ class InviteCodesController < ApplicationController
     @invite_code = InviteCode.new(invite_code_params)
 
     if @invite_code.save
-      redirect_to @invite_code, notice: 'Invite code was successfully created.'
+      redirect_to invite_codes_url, notice: 'Invite code was successfully created.'
     else
       render :new
     end
@@ -33,7 +29,7 @@ class InviteCodesController < ApplicationController
   # PATCH/PUT /invite_codes/1
   def update
     if @invite_code.update(invite_code_params)
-      redirect_to @invite_code, notice: 'Invite code was successfully updated.'
+      redirect_to invite_codes_url, notice: 'Invite code was successfully updated.'
     else
       render :edit
     end
@@ -46,13 +42,14 @@ class InviteCodesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_invite_code
-      @invite_code = InviteCode.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def invite_code_params
-      params['invite_code'].permit(:value, :guests)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_invite_code
+    @invite_code = InviteCode.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def invite_code_params
+    params['invite_code'].permit(:value, :guests)
+  end
 end

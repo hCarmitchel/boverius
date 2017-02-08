@@ -4,8 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  enum hotel: [ 'Coco Beach Hotel', 'Bosque Del Mar', 'Hiatt', 'Other' ]
-  enum food_preference: [ 'Fish', 'Beef', 'Vegetarian', 'Kids meal' ]
+  enum hotel: ['Coco Beach Hotel', 'Bosque Del Mar', 'Hiatt', 'Other']
+  enum food_preference: ['Fish', 'Beef', 'Vegetarian', 'Kids meal']
 
   has_many :guests, dependent: :destroy
   belongs_to :invite_code
@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
   validate :invite_code_valid, on: :create
   validates :first_name, uniqueness: { scope: :last_name, case_sensitive: false,
     message: 'and last name are already in use by a user who has signed up'}
+
+  default_scope { order(last_name: :desc) }
 
   attr_accessor :invite_code
 

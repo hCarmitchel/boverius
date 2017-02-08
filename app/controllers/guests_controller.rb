@@ -5,8 +5,8 @@ class GuestsController < ApplicationController
   # GET /guests
   # GET /guests.json
   def index
-    @guests = Guest.all + User.all
-    @dietary_restricted_guests = Guest.where.not(food_preference: '') + User.where.not(food_preference: '')
+    @guests = Guest.all
+    @users = User.all
   end
 
   # GET /guests/1

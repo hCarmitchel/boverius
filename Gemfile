@@ -11,6 +11,7 @@ gem 'jquery-rails'
 gem 'pg'
 gem 'rails', '5.0.1'
 gem 'rails_12factor'
+gem 'rubocop', require: false
 gem 'sass-rails', '~> 5.0'
 gem 'sendgrid-ruby'
 gem 'turbolinks'
