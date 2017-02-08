@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%h3= @user.name
+
+- if @user.hotel
+  %h4 Hotel
+  %p= @user.hotel
+
+- if @user.hotel_rooms
+  %h4 Hotel Rooms
+  %p= @user.hotel_rooms
+
+- if @user.allergy
+  %h4 Allergy
+  %p= @user.allergy
+
+- if @user.rsvp
+  %h4 RSVP
+  %p= @user.rsvp
+
+- if @user.reminders
+  %h4 Reminders
+  %p= @user.reminders
+
+- if @user.food_preference
+  %h4 Food Preference
+  %p= @user.food_preference
+
+= link_to 'Edit', edit_user_path(@user), class: 'button'
+= link_to 'Back', guests_path, class: 'button'

@@ -1,4 +1,10 @@
 %p#notice= notice
 
+%h3= @guest.name
+
+= @guest.allergy
+= @guest.food_preference
+= @guest.user.name
+
 = link_to 'Edit', edit_guest_path(@guest), class: 'button'
 = link_to 'Back', guests_path, class: 'button'

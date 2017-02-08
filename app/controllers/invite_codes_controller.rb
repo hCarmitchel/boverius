@@ -1,5 +1,6 @@
 class InviteCodesController < ApplicationController
   before_action :set_invite_code, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /invite_codes
   def index
