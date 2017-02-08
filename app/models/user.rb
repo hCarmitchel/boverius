@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   validates :first_name, uniqueness: { scope: :last_name, case_sensitive: false,
     message: 'and last name are already in use by a user who has signed up'}
 
-  default_scope { order(last_name: :desc) }
+  default_scope { order(last_name: :asc) }
 
   attr_accessor :invite_code
 

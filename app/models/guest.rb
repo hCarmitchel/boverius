@@ -5,7 +5,7 @@ class Guest < ActiveRecord::Base
   validate :guest_count, on: :create
   validate :guest_name
 
-  default_scope { order(last_name: :desc) }
+  default_scope { order(last_name: :asc) }
 
   enum role: ['Guest', 'Bride', 'Groomsman', 'Bridesmaid', 'Officiant', 'Best Man', 'Man of Honor', 'Groom'].sort
 

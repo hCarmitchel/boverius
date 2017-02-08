@@ -50,7 +50,6 @@
       %th Role
       %th Hotel
       %th Hotel Rooms
-      %th Non-Drinker
       %th RSVP
       %th Allowed Guests
       %th Actions
@@ -59,10 +58,9 @@
     - @users.each do |user|
       %tr
         %td= link_to user.name, user_path(user)
-        %td= user.role
+        %td= user.role.blank? ? 'Guest' : user.role
         %td= user.hotel
         %td= user.try(:hotel_rooms) || 0
-        %td= user.try(:below_drinking_age) || false
         %td
           %ul
             %li
