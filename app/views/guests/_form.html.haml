@@ -1,6 +1,6 @@
 = form_for @guest do |f|
   - if @guest.errors.any?
-    #error_explanation
+    #error-explanation
       %h2= "#{pluralize(@guest.errors.count, "error")} prohibited this guest from being saved:"
       %ul
         - @guest.errors.full_messages.each do |msg|
@@ -24,10 +24,5 @@
     %label.switch-paddle{for: 'guest_below_drinking_age'}
       %span.switch-active{'aria-hidden' => 'true'} Yes
       %span.switch-inactive{'aria-hidden' => 'true'} No
-  - if current_user.admin
-    .field
-      = f.label :role
-      = f.select :role, Guest.roles.keys, { include_hidden: false, include_blank: 'None' }
-
   .actions
     = f.submit 'Save', class: 'button success float-left'

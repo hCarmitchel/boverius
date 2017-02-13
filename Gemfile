@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.2.2'
 
-gem 'compass-rails'
+gem 'city-state'
 gem 'devise'
 gem 'font-awesome-rails'
 gem 'foundation-rails', '~> 6.2.0.1'

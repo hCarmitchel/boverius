@@ -1,70 +1,15 @@
-%h2
-  Edit Profile
-= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'custom' }) do |f|
-  = devise_error_messages!
-  .field
-    = f.label :first_name
-    = f.text_field :first_name, autofocus: true
-  .field
-    = f.label :last_name
-    = f.text_field :last_name
-  .field
-    = f.label :food_preference
-    = f.select :food_preference, User.food_preferences.keys, { include_hidden: false, include_blank: 'None' }
-  .field{id: 'allergy'}
-    = f.label :allergy do
-      Food Allergies or Restrictions
-    = f.text_area :allergy
-  .fieldset
+- if resource.can_invite_guest?
+  #error-explanation
     .row
-      .small-4.columns
-        = f.label :hotel
-        = f.select :hotel, User.hotels.keys, { include_hidden: false, include_blank: 'None' }
-        = f.label :hotel_rooms do
-          %span.has-tip{'aria-haspopup' => 'true', 'data-tooltip' => '', title: 'Indicate the number of hotel rooms for your party'}
-            Rooms
-        = f.number_field :hotel_rooms, min: 0, max: 5
-      .small-4.columns
-        .hotel
-  - if current_user.admin
-    .field
-      = f.label :role
-      = f.select :role, Guest.roles.keys, { include_hidden: false, include_blank: 'None' }
-  .inline-fields
-    .field.switch.large
-      = f.label :rsvp do
-        %span.has-tip{'aria-haspopup' => 'true', 'data-tooltip' => '', title: 'Please RSVP by October 1st 2017 so we may get an accurate guest count'}
-          RSVP
-      = f.check_box :rsvp, class: 'hide'
-      %label.switch-paddle{for: 'user_rsvp'}
-        %span.switch-active{'aria-hidden' => 'true'} Yes
-        %span.switch-inactive{'aria-hidden' => 'true'} No
-    .field.switch.large#reminder-field{class: ('hide' if resource.rsvp)}
-      = f.label :reminders do
-        %span.has-tip{'aria-haspopup' => 'true', 'data-tooltip' => '', title: "If left checked, we will send an email reminder if no rsvps have been sent a month from event"}
-          Reminders
-      = f.check_box :reminders, class: 'hide'
-      %label.switch-paddle{for: 'user_reminders'}
-        %span.switch-active{'aria-hidden' => 'true'} Yes
-        %span.switch-inactive{'aria-hidden' => 'true'} No
-  .field
-    = f.label :email
-    = f.email_field :email
-  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-    %div
-      Currently waiting confirmation for: #{resource.unconfirmed_email}
-  - if current_user.admin?
-    .field
-      = f.label :invite_code
-      = f.select :invite_code, InviteCode.all.map(&:value), { include_hidden: false }
-  .actions
-    = f.submit 'Update', class: 'button'
-
-%h3 Guests
-
-%p Add all guests that are in your party who are attending so we can account for plates. An RSVP for the user means all guests are attending.
+      .large-10.small-12.columns
+        = "Add all guests that are in your party who are attending so we can account for plates."
+        = "An RSVP for the user means all guests are attending."
+        %b= "You currently have #{resource.remaining_invites} guest(s) you can invite"
+      .large-2.small-12.columns
+        = link_to 'New Guest', new_guest_path, class: 'pull-right button success large'
 
 - if resource.guests.any?
+  %h2 Guests
   %table
     %thead
       %tr
@@ -96,8 +41,20 @@
                 = link_to guest, class: 'button alert', method: :delete, data: { confirm: 'Are you sure?' } do
                   %i.fa.fa-trash
 
-- if resource.can_invite_guest?
-  = link_to 'New Guest', new_guest_path, class: 'button success'
+%h2 Edit Profile
+= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'custom' }) do |f|
+  = devise_error_messages!
+  = render partial: 'shared/user_form', locals: {form: f}
+  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+    %div
+      Currently waiting confirmation for: #{resource.unconfirmed_email}
+  - if current_user.admin?
+    .field
+      = f.label :invite_code do
+        Invite Code<small> *<small>
+      = f.select :invite_code, InviteCode.all.map(&:value), { include_hidden: false }
+  .actions
+    = f.submit 'Update', class: 'button'
 
 %h3 Cancel my account
 %p

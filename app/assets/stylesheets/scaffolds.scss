@@ -14,8 +14,6 @@ $sage: #A8DBB2;
 $light-orange: #FFB287;
 $gray: #A09F9C;
 
-@import "compass/css3";
-
 body {
   font-family: verdana, arial, helvetica, sans-serif;
 }
@@ -36,12 +34,15 @@ div {
   padding-top: 100px;
 }
 
-.field_with_errors label {
+.field_with_errors label,
+form .field_with_errors span,
+span small,
+label small {
   font-weight: bold;
   color: #d9534f;
 }
 
-#error_explanation, .callout.alert {
+#error-explanation, .callout.alert {
   padding: 10px;
   background-color: #d9534f;
   border: none;
@@ -65,12 +66,13 @@ div {
     text-decoration: underline;
   }
   margin: 1em 0;
-  .close-button {
-    color: white;
-  }
   h2 {
     margin: 0;
   }
+}
+
+#error-explanation .button {
+  margin: 0;
 }
 
 img {

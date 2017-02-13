@@ -6,8 +6,10 @@ class User < ActiveRecord::Base
 
   enum hotel: ['Coco Beach Hotel', 'Bosque Del Mar', 'Hiatt', 'Other']
   enum food_preference: ['Fish', 'Beef', 'Vegetarian', 'Kids meal']
+  enum role: ['Guest', 'Bride', 'Groomsman', 'Bridesmaid', 'Officiant', 'Best Man', 'Man of Honor', 'Groom']
 
   has_many :guests, dependent: :destroy
+  has_one :address, dependent: :destroy
   belongs_to :invite_code
 
   validates :last_name, :first_name, presence: true
@@ -16,6 +18,8 @@ class User < ActiveRecord::Base
     message: 'and last name are already in use by a user who has signed up'}
 
   default_scope { order(last_name: :asc) }
+
+  accepts_nested_attributes_for :address
 
   attr_accessor :invite_code
 
@@ -37,6 +41,10 @@ class User < ActiveRecord::Base
 
   def allowed_guests
     InviteCode.find(invite_code_id).guests
+  end
+
+  def remaining_invites
+    InviteCode.find(invite_code_id).guests - guests.count
   end
 
   def name

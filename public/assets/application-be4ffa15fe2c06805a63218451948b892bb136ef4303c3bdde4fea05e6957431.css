@@ -4595,7 +4595,7 @@ div.field, div.actions {
 }
 
 /* line 45, /Users/hc027965/Github/boverius/app/assets/stylesheets/scaffolds.scss */
-#error_explanation, .callout.alert {
+#error-explanation, .callout.alert {
   padding: 10px;
   background-color: #d9534f;
   border: none;
@@ -4603,12 +4603,12 @@ div.field, div.actions {
   margin-bottom: 20px;
 }
 /* line 52, /Users/hc027965/Github/boverius/app/assets/stylesheets/scaffolds.scss */
-#error_explanation h2, .callout.alert h2 {
+#error-explanation h2, .callout.alert h2 {
   font-weight: bold;
   font-size: 14px;
 }
 /* line 57, /Users/hc027965/Github/boverius/app/assets/stylesheets/scaffolds.scss */
-#error_explanation ul, .callout.alert ul {
+#error-explanation ul, .callout.alert ul {
   font-size: 12px;
   margin: 0;
 }

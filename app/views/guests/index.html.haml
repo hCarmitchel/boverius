@@ -58,7 +58,7 @@
     - @users.each do |user|
       %tr
         %td= link_to user.name, user_path(user)
-        %td= user.role.blank? ? 'Guest' : user.role
+        %td= user.role
         %td= user.hotel
         %td= user.try(:hotel_rooms) || 0
         %td

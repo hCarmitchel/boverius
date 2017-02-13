@@ -1,57 +1,13 @@
 %h1= "Editing #{@user.name}"
 
 = form_for(@user, html: { method: :put, class: 'custom' }) do |f|
-  .field
-    = f.label :first_name
-    = f.text_field :first_name, autofocus: true
-  .field
-    = f.label :last_name
-    = f.text_field :last_name
-  .field
-    = f.label :food_preference
-    = f.select :food_preference, User.food_preferences.keys, { include_hidden: false, include_blank: 'None' }
-  .field{id: 'allergy'}
-    = f.label :allergy do
-      Food Allergies or Restrictions
-    = f.text_area :allergy
-  .fieldset
-    .row
-      .small-4.columns
-        = f.label :hotel
-        = f.select :hotel, User.hotels.keys, { include_hidden: false, include_blank: 'None' }
-        = f.label :hotel_rooms do
-          %span.has-tip{'aria-haspopup' => 'true', 'data-tooltip' => '', title: 'Indicate the number of hotel rooms for your party'}
-            Rooms
-        = f.number_field :hotel_rooms, min: 0, max: 5
-      .small-4.columns
-        .hotel
-  - if current_user.admin
-    .field
-      = f.label :role
-      = f.select :role, Guest.roles.keys, { include_hidden: false, include_blank: 'None' }
-  .inline-fields
-    .field.switch.large
-      = f.label :rsvp do
-        %span.has-tip{'aria-haspopup' => 'true', 'data-tooltip' => '', title: 'Please RSVP by October 1st 2017 so we may get an accurate guest count'}
-          RSVP
-      = f.check_box :rsvp, class: 'hide'
-      %label.switch-paddle{for: 'user_rsvp'}
-        %span.switch-active{'aria-hidden' => 'true'} Yes
-        %span.switch-inactive{'aria-hidden' => 'true'} No
-    .field.switch.large#reminder-field{class: ('hide' if @user.rsvp)}
-      = f.label :reminders do
-        %span.has-tip{'aria-haspopup' => 'true', 'data-tooltip' => '', title: "If left checked, we will send an email reminder if no rsvps have been sent a month from event"}
-          Reminders
-      = f.check_box :reminders, class: 'hide'
-      %label.switch-paddle{for: 'user_reminders'}
-        %span.switch-active{'aria-hidden' => 'true'} Yes
-        %span.switch-inactive{'aria-hidden' => 'true'} No
+  #error-explanation
+    - @user.errors.full_messages.each do |error|
+      %p= error
+  = render partial: 'shared/user_form', locals: {form: f, resource: @user}
   .field
     = f.label :invite_code_id
     = f.select :invite_code_id, InviteCode.all.collect { |c| [ c.value, c.id ] }, { include_hidden: false }
-  .field
-    = f.label :email
-    = f.email_field :email
   .actions
     = f.submit 'Save', class: 'button success float-left'
 

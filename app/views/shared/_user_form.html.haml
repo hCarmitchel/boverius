@@ -1,0 +1,85 @@
+.row
+  .large-6.small-12.columns
+    .field
+      = form.label :first_name do
+        First Name<small> *<small>
+      = form.text_field :first_name, placeholder: 'Matthew'
+  .large-6.small-12.columns
+    .field
+      = form.label :last_name do
+        Last Name<small> *<small>
+      = form.text_field :last_name, placeholder: 'Boverius'
+.row
+  .large-6.small-12.columns
+    .field
+      = form.label :food_preference
+      = form.select :food_preference, User.food_preferences.keys, { include_hidden: false, include_blank: 'None' }
+  .large-6.small-12.columns
+    .field{id: 'allergy'}
+      = form.label :allergy do
+        Food Allergies or Restrictions
+      = form.text_area :allergy
+.fieldset
+  .row
+    .large-6.small-12.columns
+      = form.label :hotel
+      = form.select :hotel, User.hotels.keys, { include_hidden: false, include_blank: 'None' }
+    .large-6.small-12.columns
+      = form.label :hotel_rooms do
+        %span.has-tip{'aria-haspopup' => 'true', 'data-tooltip' => '', title: 'Indicate the number of hotel rooms for your party'}
+          Rooms
+      = form.number_field :hotel_rooms, min: 0, max: 5
+.inline-fields
+  .field.switch.large
+    = form.label :rsvp do
+      %span.has-tip{'aria-haspopup' => 'true', 'data-tooltip' => '', title: 'Please RSVP by October 1st 2017 so we may get an accurate guest count'}
+        RSVP
+    = form.check_box :rsvp, class: 'hide'
+    %label.switch-paddle{for: 'user_rsvp'}
+      %span.switch-active{'aria-hidden' => 'true'} Yes
+      %span.switch-inactive{'aria-hidden' => 'true'} No
+  .field.switch.large#reminder-field{class: ('hide' if resource.rsvp)}
+    = form.label :reminders do
+      %span.has-tip{'aria-haspopup' => 'true', 'data-tooltip' => '', title: "If left checked, we will send an email reminder if no rsvps have been sent a month from event"}
+        Reminders
+    = form.check_box :reminders, class: 'hide'
+    %label.switch-paddle{for: 'user_reminders'}
+      %span.switch-active{'aria-hidden' => 'true'} Yes
+      %span.switch-inactive{'aria-hidden' => 'true'} No
+= form.fields_for :address, (resource.address || resource.build_address) do |address|
+  .fieldset
+    .row
+      .large-6.small-12.columns
+        .field
+          = address.label :line_1 do
+            Address line 1<small> *<small>
+          = address.text_field :line_1
+      .large-6.small-12.columns
+        .field
+          = address.label :line_2 do
+            Address line 2
+          = address.text_field :line_2
+    .row
+      .large-4.small-12.columns
+        .field
+          = address.label :state do
+            State<small> *<small>
+          = address.select :state, CS.states(:us).collect { |k, v| [ v, k ] }, { include_hidden: false, include_blank: true }
+      .large-6.small-12.columns
+        .field
+          = address.label :city do
+            City<small> *<small>
+          = address.text_field :city
+      .large-2.small-12.columns
+        .field
+          = address.label :zip_code do
+            Zip code<small> *<small>
+          = address.text_field :zip_code
+.field
+  = form.label :email do
+    Email<small> *<small>
+  = form.email_field :email
+- if current_user && current_user.admin?
+  .field{class: ('hide' unless current_user && current_user.admin?)}
+    = form.label :role
+    = form.select :role, User.roles.keys, { include_hidden: false }

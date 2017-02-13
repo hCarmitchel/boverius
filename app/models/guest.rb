@@ -7,8 +7,6 @@ class Guest < ActiveRecord::Base
 
   default_scope { order(last_name: :asc) }
 
-  enum role: ['Guest', 'Bride', 'Groomsman', 'Bridesmaid', 'Officiant', 'Best Man', 'Man of Honor', 'Groom'].sort
-
   belongs_to :user
 
   def self.below_drinking_age
@@ -24,11 +22,11 @@ class Guest < ActiveRecord::Base
   end
 
   def guest_name
-    return unless User.find_by(first_name: first_name, last_name: last_name).any?
-    self.errors.add('a guest may not have the same name as another user')
+    return unless User.find_by(first_name: first_name, last_name: last_name)
+    self.errors.add(:base, 'a guest may not have the same name as another user')
   end
 
   def guest_count
-    self.errors.add('your guest count has been reached') unless user.can_invite_guest?
+    self.errors.add(:base, 'your guest count has been reached') unless user.can_invite_guest?
   end
 end
