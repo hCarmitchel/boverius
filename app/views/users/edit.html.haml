@@ -1,9 +1,10 @@
 %h1= "Editing #{@user.name}"
 
 = form_for(@user, html: { method: :put, class: 'custom' }) do |f|
-  #error-explanation
-    - @user.errors.full_messages.each do |error|
-      %p= error
+  - if @user.errors.any?
+    #error-explanation
+      - @user.errors.full_messages.each do |error|
+        %p= error
   = render partial: 'shared/user_form', locals: {form: f, resource: @user}
   .field
     = f.label :invite_code_id

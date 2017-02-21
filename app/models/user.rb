@@ -40,11 +40,11 @@ class User < ActiveRecord::Base
   end
 
   def allowed_guests
-    InviteCode.find(invite_code_id).guests
+    InviteCode.find(invite_code_id).guests - 1
   end
 
   def remaining_invites
-    InviteCode.find(invite_code_id).guests - guests.count
+    allowed_guests - guests.count
   end
 
   def name
