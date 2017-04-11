@@ -29,7 +29,7 @@
                 %li= link_to 'Logout', destroy_user_session_path, method: :delete
         - else
           %ul.menu
-            %li= link_to 'Sign up', new_user_registration_path
+            %li= link_to 'Find out more', new_user_registration_path
             %li= link_to 'Login', new_user_session_path
     - if controller.action_name == 'home'
       = yield
