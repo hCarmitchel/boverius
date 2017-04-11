@@ -1,6 +1,6 @@
 = form_for @guest do |f|
   - if @guest.errors.any?
-    #error-explanation
+    #error_explanation
       %h2= "#{pluralize(@guest.errors.count, "error")} prohibited this guest from being saved:"
       %ul
         - @guest.errors.full_messages.each do |msg|

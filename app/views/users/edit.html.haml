@@ -2,7 +2,7 @@
 
 = form_for(@user, html: { method: :put, class: 'custom' }) do |f|
   - if @user.errors.any?
-    #error-explanation
+    #error_explanation
       - @user.errors.full_messages.each do |error|
         %p= error
   = render partial: 'shared/user_form', locals: {form: f, resource: @user}
