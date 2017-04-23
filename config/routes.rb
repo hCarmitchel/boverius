@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :guests
 
   root 'application#home'
+  get '/information', to: 'application#information'
 
   devise_for :users,
              path_names: { sign_in: 'login', sign_out: 'logout' },
@@ -10,6 +11,4 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update]
 
   match 'users/:id' => 'users#destroy', via: :delete, as: :admin_destroy_user
-
-  get 'cities/:state', to: 'application#cities'
 end

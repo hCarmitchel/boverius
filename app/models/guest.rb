@@ -27,6 +27,7 @@ class Guest < ActiveRecord::Base
   end
 
   def guest_count
-    self.errors.add(:base, 'your guest count has been reached') unless user.can_invite_guest?
+    # self.errors.add(:base, 'your guest count has been reached') unless user.can_invite_guest?
+    true
   end
 end

@@ -7,4 +7,7 @@ class ApplicationController < ActionController::Base
     @days_together = (Date.today - Date.parse('02/07/2014')).numerator
     @days_since_we_met = (Date.today - Date.parse('03/07/2013')).numerator
   end
+
+  def information
+  end
 end

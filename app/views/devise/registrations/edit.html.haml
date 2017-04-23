@@ -4,7 +4,6 @@
       .large-10.small-12.columns
         = "Add all guests that are in your party who are attending so we can account for plates."
         = "An RSVP for the user means all guests are attending."
-        %b= "You currently have #{resource.remaining_invites} guest(s) you can invite"
       .large-2.small-12.columns
         = link_to 'New Guest', new_guest_path, class: 'pull-right button success large'
 
@@ -48,6 +47,25 @@
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
     %div
       Currently waiting confirmation for: #{resource.unconfirmed_email}
+  .fieldset
+    .row
+      .large-6.small-12.columns
+        = f.label :hotel
+        = f.select :hotel, User.hotels.keys, { include_hidden: false, include_blank: 'None' }
+      .large-6.small-12.columns
+        = f.label :hotel_rooms do
+          %span.has-tip{'aria-haspopup' => 'true', 'data-tooltip' => '', title: 'Indicate the number of hotel rooms for your party'}
+            Rooms
+        = f.number_field :hotel_rooms, min: 0, max: 5
+  .large-6.small-12.columns
+    .field
+      = f.label :food_preference
+      = f.select :food_preference, User.food_preferences.keys, { include_hidden: false, include_blank: 'None' }
+  .large-6.small-12.columns
+    .field{id: 'allergy'}
+      = f.label :allergy do
+        Food Allergies or Restrictions
+      = f.text_area :allergy
   - if current_user.admin?
     .field
       = f.label :invite_code do

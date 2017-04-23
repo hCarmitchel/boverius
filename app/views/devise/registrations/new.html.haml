@@ -1,11 +1,5 @@
 %h2 Sign up
 
-.callout.secondary
-  %h6.text-center
-    Sign up now and you can always RSVP later if you need more information. If your plans change, you can also un-RSVP by updating your profile to let us know you can't go. Guests can be added to your party after you sign up.
-
-%br
-
 = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
   = devise_error_messages!
   = render partial: 'shared/user_form', locals: {form: f}
@@ -19,7 +13,7 @@
       .field
         = f.label :password_confirmation do
           Password confirmation<small> *<small>
-        = f.password_field :password_confirmation, autocomplete: 'on'
+        = f.password_field :password_confirmation, autocomplete: 'on', placeholder: 'Must match password'
   .field
     = f.label :invite_code do
       Invite code<small> *<small>
