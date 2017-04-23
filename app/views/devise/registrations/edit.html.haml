@@ -1,8 +1,10 @@
-- if resource.can_invite_guest?
-  #error_explanation
+- if resource.can_invite_guest? && !resource.has_guests?
+  .success#error_explanation
     .row
       .large-10.small-12.columns
-        = "Add all guests that are in your party who are attending so we can account for plates."
+        - if notice
+          %b#notice= notice
+        = "Add all guests that are in your party who are attending so we can account for plates, inluding significant others and children."
         = "An RSVP for the user means all guests are attending."
       .large-2.small-12.columns
         = link_to 'New Guest', new_guest_path, class: 'pull-right button success large'

@@ -39,6 +39,10 @@ class User < ActiveRecord::Base
     User.sum(:hotel_rooms)
   end
 
+  def has_guests?
+    guests.count > 0
+  end
+
   def allowed_guests
     InviteCode.find(invite_code_id).guests - 1
   end

@@ -42,6 +42,10 @@ label small {
   color: #d9534f;
 }
 
+.success#error_explanation {
+  background-color: $sage;
+}
+
 #error_explanation, .callout.alert {
   padding: 10px;
   background-color: #d9534f;
