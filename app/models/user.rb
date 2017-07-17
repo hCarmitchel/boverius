@@ -39,12 +39,22 @@ class User < ActiveRecord::Base
     User.sum(:hotel_rooms)
   end
 
+  def self.coming
+    coming = User.where(rsvp: true)
+    count = coming.count
+    coming.each do |user|
+      count = count + user.guests.count
+    end
+    count
+  end
+
   def has_guests?
     guests.count > 0
   end
 
   def allowed_guests
-    InviteCode.find(invite_code_id).guests - 1
+    guests = InviteCode.find(invite_code_id).guests
+    guests == 0 ? 0 : (guests - 1)
   end
 
   def remaining_invites
