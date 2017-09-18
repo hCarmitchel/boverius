@@ -52,6 +52,8 @@
       %th Hotel Rooms
       %th RSVP
       %th Allowed Guests
+      %th Last Sign In
+      %th Sign In Count
       %th Actions
 
   %tbody
@@ -69,6 +71,8 @@
               - else
                 %i.fa.fa-times
         %td= user.allowed_guests
+        %td= user.last_sign_in_at
+        %td= user.sign_in_count
         %td.actions
           %ul
             %li
