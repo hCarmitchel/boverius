@@ -16,17 +16,6 @@
       .row
         .large-10.small-centered.columns.text-center
           %span.dashed-shadow{'data-text' => 'The Wedding Week'} The Wedding Week
-      .row.text-center
-        .large-10.small-centered.columns
-          .alert.callout
-            %h2.text-center Please note that this website is still under construction and the itinerary has not been finalized
-          / - unless current_user.rsvp
-          /   .alert.callout
-          /     %h2.text-center
-          /       You have not yet RSVP'd! Please RSVP
-          /       %a{href: edit_user_registration_path} here
-          / - else
-          %a{class: 'button', href: 'https://www.triphobo.com/tripplans/coco/insistingnerary-from-kansas-city-5894efb24e8231d424000c91'} View Intinerary
       .row.large-collapse.calendar
         .large-3.small-6.columns
           .box
@@ -34,14 +23,14 @@
               %span
                 January 6
             .info
-              %p.text-center Everyone arrives & welcome dinner
+              %p.text-center Everyone arrives
         .large-3.small-6.columns
           .box
             .box-icon
               %span
                 January 7
             .info
-              %p.text-center Pool party & boat ride
+              %p.text-center Pool party & welcome dinner at Gingers
         .large-3.small-6.columns
           .box
             .box-icon
@@ -55,21 +44,21 @@
               %span
                 January 9
             .info
-              %p.text-center A day of adventure & ziplining
+              %p.text-center Relaxing and swimming
         .large-3.small-6.columns
           .box
             .box-icon
               %span
                 January 10
             .info
-              %p.text-center Relaxing and swimming
+              %p.text-center A day of adventure & ziplining
         .large-3.small-6.columns
           .box
             .box-icon
               %span
                 January 11
             .info
-              %p.text-center Fishing. Then a day of strategy
+              %p.text-center Relaxing and swimming
         .large-3.small-6.columns
           .box
             .box-icon
@@ -81,23 +70,17 @@
           .box
             .box-icon
               %span
-                January 13
+                January 13 & 14
             .info
               %p.text-center Flights home
     .section
       .row
         .large-10.small-centered.columns.text-center
           %span.dashed-shadow{'data-text' => 'The Wedding Day'} The Wedding Day
-      - unless current_user.rsvp
-        .row
-          .large-10.small-centered.columns
-            .alert.callout
-              %h2.text-center
-                You have not yet RSVP'd! Please RSVP
-                %a{href: edit_user_registration_path} here
-      .row
+      .row.text-center
         .large-10.small-centered.columns
-          %a{download: 'timeline', href: 'assets/timeline.pdf'} Download the wedding timeline PDF (only works on modern browsers like Chrome and Firefox).
+          %a{class: 'button', download: 'timeline', href: 'assets/timeline.pdf', target: "_blank"} Download the wedding timeline PDF
+          %p (only works on modern browsers like Chrome and Firefox).
       .row
         .large-10.small-centered.columns
           %section#cd-timeline
@@ -135,7 +118,7 @@
               .cd-timeline-img
                 %img{alt: 'Picture', src: 'assets/buffet.svg'}
               .cd-timeline-content
-                %p.timeline-name Reception
+                %p.timeline-name Reception at <a href="http://www.pacifico-costarica.com/beach-club/">Pacifico</a>
                 %span.cd-date 6:00 PM - 9:00 PM
             %div
             / <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
@@ -250,10 +233,6 @@
         .large-12.large-centered.columns
           .text-center
             %span.dashed-shadow{'data-text' => 'Travel Info'} Travel Info
-      .row
-        .large-12.large-centered.columns
-          .text-center
-            / %a{class: 'button'} Download PDF
       .row
         .large-12.large-centered.columns
           %ul.accordion{'data-accordion' => ''}
