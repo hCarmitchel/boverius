@@ -77,10 +77,11 @@
       .row
         .large-10.small-centered.columns.text-center
           %span.dashed-shadow{'data-text' => 'The Wedding Day'} The Wedding Day
-      .row.text-center
-        .large-10.small-centered.columns
-          %a{class: 'button', download: 'timeline', href: 'assets/timeline.pdf', target: "_blank"} Download the wedding timeline PDF
-          %p (only works on modern browsers like Chrome and Firefox).
+      / .row.text-center
+      /   .large-10.small-centered.columns
+      /     %a= link_to 'Download the wedding timeline PDF', asset_path('public/timeline.pdf'), class: 'button'
+      /     / %a{class: 'button', download: 'timeline', href: 'public/timeline.pdf', target: '_blank'} Download the wedding timeline PDF
+      /     %p (only works on modern browsers like Chrome and Firefox).
       .row
         .large-10.small-centered.columns
           %section#cd-timeline
