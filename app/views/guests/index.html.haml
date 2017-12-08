@@ -48,6 +48,7 @@
     %tr
       %th Name
       %th Role
+      %th Email
       %th Hotel
       %th Hotel Rooms
       %th RSVP
@@ -61,6 +62,7 @@
       %tr
         %td= link_to user.name, user_path(user)
         %td= user.role
+        %td= user.email
         %td= user.hotel
         %td= user.try(:hotel_rooms) || 0
         %td
@@ -81,4 +83,14 @@
             %li
               = link_to admin_destroy_user_path(user), class: 'button alert', method: :delete, data: { confirm: 'Are you sure?' } do
                 %i.fa.fa-trash
+
+  %table
+    %thead
+      %tr
+        %th Email
+
+    %tbody
+      - @users.each do |user|
+        %tr
+          %td= user.email
 
